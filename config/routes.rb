@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :diaries
+  resources :pets
   resources :users
 
   post '/login', to: 'sessions#create'

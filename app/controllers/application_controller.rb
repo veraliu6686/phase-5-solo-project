@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
 include ActionController::Cookies
 
-before_action :authorized_user
+# before_action :authorized_user
 rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 rescue_from ActiveRecord::RecordInvalid, with: :render_invalid_response
 
@@ -23,5 +23,5 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_invalid_response
   def render_invalid_response invalid
     render json: {errors: invalid.record.errors}, status: :unprocessable_entity
   end
-  
+
 end
