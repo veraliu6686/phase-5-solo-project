@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import { Routes, Route } from 'react-router-dom';
 import Nav from './Nav'
+import Hello from './Hello';
 import Home from './Home';
 import DiaryMain from './DiaryMain.jsx';
 import PetPen from './PetPen'
@@ -11,7 +12,9 @@ import Signup from './Signup';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(false)
-  
+  const [ pets, setPets] = useState ( [] )
+  const [ diaries, setDiarys] = useState ( [] )
+
   const updateUser = (user) => setCurrentUser(user)
 
   useEffect(() => {
@@ -25,18 +28,30 @@ function App() {
       }
     })
   },[])
-
   console.log(currentUser)
+
+  useEffect (()=>{
+      fetch("api/pets")
+      .then(res => res.json())
+      .then (setPets)
+  }, [])
+
+  useEffect (()=>{
+      fetch("api/diaries")
+      .then(res => res.json())
+      .then (setDiarys)
+  }, [])
 
   return (
     <div>
-      {<Nav updateUser = {updateUser}/>}
+      { currentUser ? <Nav updateUser = {updateUser}/> : <></>}
       <Routes>
-        <Route exact path= "/" element= {<Home />}> </Route>
+        <Route exact path= "/" element= {<Hello />}> </Route>
+        <Route exact path= "/home" element= {<Home pets = {pets} />}> </Route>
         <Route path = "/login" element = {<Login updateUser = {updateUser} />}> </Route>
         <Route path = "/signup" element = {<Signup updateUser = {updateUser} />}> </Route>
-        <Route path = "/memo" element = {<DiaryMain />}> </Route>
-        <Route path = "/pets" element = {<PetPen />}> </Route>
+        <Route path = "/memo" element = {<DiaryMain diaries = {diaries}/>}> </Route>
+        <Route path = "/pets" element = {<PetPen pets = {pets}/>}> </Route>
       </Routes>
     </div>
   )

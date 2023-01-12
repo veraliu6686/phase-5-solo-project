@@ -1,21 +1,21 @@
 import React from "react"
 import DiaryCard from "./DiaryCard"
 
-function DiaryMain () {
+function DiaryMain ({diaries}) {
 
-    // const renderEachDiary = () => {
-    //     return(
-    //         <div>
-    //             <DiaryCard/>
-    //         </div>
-    //     )
-    // }
+    const renderDiary = diaries.map( diary => {
+        return (
+            <div>
+                <DiaryCard key = {diary.id} diary = {diary}/>
+            </div>
+        )
+    })
 
     return (
         <div className = "con">
             <h1> Hello from diary main page</h1>
             <div>
-                <DiaryCard/>
+                {renderDiary}
             </div>
         </div>
     )
