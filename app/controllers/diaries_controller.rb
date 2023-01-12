@@ -16,8 +16,7 @@ class DiariesController < ApplicationController
         update_diary = find_diary.update!(diary_params)
         render json: update_diary
     end
-
-
+    
     private
 
     def diairy_params
@@ -27,5 +26,5 @@ class DiariesController < ApplicationController
     def find_diary
         Diary.find(params[:id])
     end
-    
+
 end

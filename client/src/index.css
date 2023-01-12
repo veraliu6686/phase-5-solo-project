@@ -1,71 +1,142 @@
 :root {
-  /* font-family: Inter, Avenir, Helvetica, Arial, sans-serif; */
   font-family: 'East Sea Dokdo', cursive;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 2em;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* border: 1px solid red; */
 }
 
 body {
-  margin: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: #646464;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* reusable */
+.con{
+  margin-top: 300px;
+  display: flex;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.center-div{
+  display: grid;
+}
+
+input{
+  outline: none;
+  background: transparent;
+  width: 240px;
+  height: 30px;
+  margin-bottom: 12px;
+  border-radius: 5px;
+  border: none;
+}
+
+input:focus {
+  color: #f2df79;
+}
+
+input:focus::placeholder {
+  opacity: 0;
+}
+
+button:hover{
+  font-weight: 700;
+  font-size: 1.1rem;
+  background-color: #f2df79;
+  color: #646464;
+  border: none;
+}
+
+/* reusable end */
+
+/* navbar */
+.nav-bar{
+  width: 90vw;
+  height: 70px;
+  background-color: transparent;
+  position: sticky;
+  align-items: center;
+  z-index: 10;
+}
+
+.nav-bar .nav-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+#logo{
+  width: 500px;
+  margin: auto;
+}
+
+.nav-item{
+  color: #f2df79;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+.nav-item:hover{
+  color: #fff;
+  border-bottom: 2px dashed #f2df79 ;
+}
+/* navbar end*/
+
+/* icons setting */
+.fa-solid{
+  font-size: .8rem;
+  color: white;
+}
+
+.fa-right-from-bracket{
+  font-size: 1rem;
+  margin-top: 12px;
+}
+
+.fa-right-from-bracket:hover{
   cursor: pointer;
-  transition: border-color 0.25s;
+  color: #f2df79;
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* icons end */
+
+/* login/signup form */
+.form{
+  margin: auto;
+  text-align: center;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.title{
+  color: #f2df79;
 }
+
+.input-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.line{
+  border-bottom: 2px solid #fff;
+}
+
+.input-div{
+  display: relative;
+  justify-content: space-around;
+}
+
+.input-div i{
+  margin-right: 5px;
+}
+
+.submit-btn button{
+  font-family: 'East Sea Dokdo', cursive;
+  width: 270px;
+  font-size: 1rem;
+  margin: 10px;
+}
+/* login/signup form end */
