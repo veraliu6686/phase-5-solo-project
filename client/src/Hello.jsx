@@ -1,8 +1,6 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
 import Logo from "./assets/petMemo_logo.png"
-// import 'virtual:windi.css'
-
 
 function Hello(){
     return (

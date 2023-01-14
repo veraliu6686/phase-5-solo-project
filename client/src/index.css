@@ -2,30 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  font-family: 'East Sea Dokdo', cursive;
-  font-size: 2em;
-  font-weight: 400;
-}
+@layer base {
+  html{
+    font-family: 'East Sea Dokdo', cursive;
+  }
+  h1 {
+    @apply text-3xl;
+  }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  /* border: 1px solid red; */
-}
+  h2 {
+    @apply text-2xl;
+  }
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #646464;
+  h3 {
+    @apply text-xl;
+  }
+
+  a, li, p{
+    @apply text-base;
+  }
+
 }
 
 /* reusable */
-.con{
-  margin-top: 160px;
-}
 
 .center-con,.con{
   display: flex;
@@ -64,20 +63,6 @@ button:hover{
 /* reusable end */
 
 /* navbar */
-.nav-bar{
-  width: 90vw;
-  height: 70px;
-  background-color: transparent;
-  position: sticky;
-  align-items: center;
-  z-index: 10;
-}
-
-.nav-bar .nav-list {
-  display: flex;
-  justify-content: space-between;
-}
-
 #logo{
   width: 500px;
   margin: auto;
@@ -85,16 +70,6 @@ button:hover{
 
 #lg-logo{
   z-index: 10;
-}
-
-.nav-item{
-  color: #f2df79;
-  font-size: 1.5rem;
-  text-decoration: none;
-}
-.nav-item:hover{
-  color: #fff;
-  border-bottom: 2px dashed #f2df79 ;
 }
 /* navbar end*/
 
@@ -167,12 +142,3 @@ button:hover{
   color: aliceblue;
 }
 /* login/signup form end */
-
-/* pet */
-.round-clip {
-  clip-path: circle(50%);
-  object-fit: cover;
-  width: 240px;
-  height: 240px;
-}
-/* pet end */

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-// import reactLogo from './assets/react.svg'
 import './App.css'
 import { Routes, Route } from 'react-router-dom';
 import Nav from './Nav'
@@ -9,8 +8,14 @@ import DiaryMain from './DiaryMain.jsx';
 import PetPen from './PetPen'
 import Login from './Login';
 import Signup from './Signup';
+import { themeChange } from 'theme-change'
 
 function App() {
+  useEffect(() => {
+  themeChange(false)
+  // 👆 false parameter is required for react project
+  }, [])
+
   const [currentUser, setCurrentUser] = useState(false)
   const [ pets, setPets] = useState ( [] )
   const [ diaries, setDiaries] = useState ( [] )
@@ -44,6 +49,17 @@ function App() {
 
   return (
     <div>
+      <div className = "dropdown dropdown-right">
+        <label tabIndex = {0}  for = "underline_select" className = "sr-only">Color Theme</label>
+        <select data-choose-theme tabIndex = {0} id = "underline_select" className = "block py-2.5 px-2 mx-8 text-center text-base text-primary bg-transparent border-0 border-b-2 border-accent appearance-none ">
+          <option value = "aqua">Aqua</option>
+          <option value = "coffee">Coffeee</option>
+          <option value = "dark">Dark</option>
+          <option value = "garden">Garden</option>
+          <option value = "retro">Rretro</option> 
+          <option value = "valentine">Valentine</option>
+        </select>
+      </div>
       { currentUser ? <Nav updateUser = {updateUser}/> : <></>}
       <Routes>
         <Route exact path = "/" element = {<Hello />}></Route>

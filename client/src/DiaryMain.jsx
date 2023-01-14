@@ -18,7 +18,12 @@ function DiaryMain ({pets, diaries, setDiaries, currentUser}) {
         })
         .then(res => res.json())
         .then(newMemo => setDiaries([newMemo, ...diaries]))
-        setInputs("")
+        setInputs({
+        date: "",
+        title: "",
+        content: "",
+        tag: ""
+        })
     }
     // console.log(inputs)
 
@@ -37,7 +42,6 @@ function DiaryMain ({pets, diaries, setDiaries, currentUser}) {
 
     return (
         <div className = "con">
-            <h1> Hello from diary main page</h1>
             <form onSubmit = {handleSubmit}>
                 <input
                     placeholder = "date"

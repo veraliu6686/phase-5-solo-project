@@ -1,10 +1,12 @@
 import React, { useState } from "react"
 import PetCard from "./PetCard"
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function PetPen ({pets, setPets, currentUser}) {
+    const [startDate, setStartDate] = useState(new Date())
     const [inputs, setInputs] = useState ({
         name: "",
-        arrival_date: "",
         image: "",
         weight: "",
         gender: "",
@@ -13,42 +15,52 @@ function PetPen ({pets, setPets, currentUser}) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        // const newPet = {
-        // name: inputs.name,
-        // arrival_date: inputs.arrival_date,
-        // image: inputs.image,
-        // weight: inputs.weight,
-        // gender: inputs.gender,
-        // sterilized: inputs.sterilized,
-        // user_id: currentUser.id
-        // }
+        const newPet = {
+        name: inputs.name,
+        arrival_date: startDate,
+        image: inputs.image,
+        weight: inputs.weight,
+        gender: inputs.gender,
+        sterilized: inputs.sterilized,
+        user_id: currentUser.id
+        }
         fetch("/api/pets",{
             method:"POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({...inputs, user_id: currentUser.id})
+            body: JSON.stringify({newPet})
         })
         .then(res => res.json())
         .then(newPet => setPets([newPet, ...pets]))
-        setInputs("")
+
+        setInputs({
+        name: "",
+        image: "",
+        weight: "",
+        gender: "",
+        sterilized: ""
+        })
     }
-    console.log(inputs)
+    console.log(startDate)
+
     const handleChange = (e) => {
         const {name, value} = e.target
         setInputs({ ...pets, [name]: value })
     }
 
-    console.log(inputs)
+    const handleDateChange = date => {
+        let selectedDateFromCalender =  date.format();
+        setStartDate( selectedDateFromCalender)
+    }
+
     const renderPet = pets.map( pet => {
         return (
-            <div key = {pet.id}>
+            <div key = {pet.id} className = "px-5">
                 <PetCard key = {pet.id} pet = {pet}/>
             </div>
         )
     })
-
     return (
-        <div className = "con">
-            <h1> Hello from pet page</h1>
+        <div>
             <form  onSubmit = {handleSubmit}>
                 <input
                     type = "text"
@@ -58,14 +70,18 @@ function PetPen ({pets, setPets, currentUser}) {
                     value = {inputs.name}
                     onChange = { handleChange}
                     />
-                <input
+                <DatePicker
+                    selected={startDate}
+                    onChange={handleDateChange}
+                    />
+                {/* <input
                     type = "text"
                     className = "input input-ghost w-full max-w-xs"
                     placeholder = "date arrived at home"
                     name = "arrival_date"
                     value = {inputs.arrival_date}
                     onChange = { handleChange}
-                    />
+                    /> */}
                 <input
                     type = "text"
                     // className = "input input-ghost w-full max-w-xs"
@@ -98,9 +114,9 @@ function PetPen ({pets, setPets, currentUser}) {
                     value = {inputs.sterilized}
                     onChange = { handleChange}
                     />
-                <button type = "submit" className = "btn btn-primary">Add Pet</button>
+                <button type = "submit" className = "btn btn-primary">Add pet</button>
             </form>
-            <div>
+            <div className = "flex items-stretch overscroll-x-auto">
                 {renderPet}
             </div>
         </div>
