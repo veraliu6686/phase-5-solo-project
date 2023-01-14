@@ -10,7 +10,7 @@ function Hello(){
             <div>
                 < img id = "lg-logo"src = {Logo} alt = "logo"/>
             </div>
-            <div className="center-con">
+            <div className = "center-con">
                 <h1> Welcome to petMemo!!!</h1>
                 <div className = "center-div">
                     <NavLink to = "/signup" className = "nav-item"> Sign Up here</NavLink>

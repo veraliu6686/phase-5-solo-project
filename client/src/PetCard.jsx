@@ -1,7 +1,7 @@
 import React from "react"
 
 function PetCard ({pet}) {
-    const {name, gender, image, weight, sterilized}= pet
+    const {name, gender, image, weight, sterilized} = pet
     return (
         <div>
             <span className="line">

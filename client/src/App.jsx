@@ -13,7 +13,7 @@ import Signup from './Signup';
 function App() {
   const [currentUser, setCurrentUser] = useState(false)
   const [ pets, setPets] = useState ( [] )
-  const [ diaries, setDiarys] = useState ( [] )
+  const [ diaries, setDiaries] = useState ( [] )
 
   const updateUser = (user) => setCurrentUser(user)
 
@@ -39,19 +39,19 @@ function App() {
   useEffect (()=>{
       fetch("api/diaries")
       .then(res => res.json())
-      .then (setDiarys)
+      .then (setDiaries)
   }, [])
 
   return (
     <div>
       { currentUser ? <Nav updateUser = {updateUser}/> : <></>}
       <Routes>
-        <Route exact path= "/" element= {<Hello />}> </Route>
-        <Route exact path= "/home" element= {<Home pets = {pets} />}> </Route>
-        <Route path = "/login" element = {<Login updateUser = {updateUser} />}> </Route>
-        <Route path = "/signup" element = {<Signup updateUser = {updateUser} />}> </Route>
-        <Route path = "/memo" element = {<DiaryMain diaries = {diaries}/>}> </Route>
-        <Route path = "/pets" element = {<PetPen pets = {pets}/>}> </Route>
+        <Route exact path = "/" element = {<Hello />}></Route>
+        <Route exact path = "/home" element = {<Home pets = {pets} />}></Route>
+        <Route path = "/login" element = {<Login updateUser = {updateUser} />}></Route>
+        <Route path = "/signup" element = {<Signup updateUser = {updateUser} />}></Route>
+        <Route path = "/memo" element = {<DiaryMain pets = {pets} diaries = {diaries} setDiaries = {setDiaries} currentUser = {currentUser}/>}></Route>
+        <Route path = "/pets" element = {<PetPen pets = {pets} setPets = {setPets} currentUser = {currentUser}/>}></Route>
       </Routes>
     </div>
   )
