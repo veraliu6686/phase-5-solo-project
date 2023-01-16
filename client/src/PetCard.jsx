@@ -5,7 +5,7 @@ function PetCard ({pet}) {
     return (
         <div className = "indicator mx-5">
             <div className="indicator-item indicator-center indicator-bottom badge badge-primary">
-                <button className="btn btn-warning rounded-full lowercase text-base">Manage</button>
+                <button className="btn btn-warning-focus rounded-full lowercase text-base hover:text-base hover:text-white">Manage</button>
             </div>
             <div className="w-full max-w-sm border-secondary rounded-lg shadow-md">
                 <div className="flex flex-col items-center pb-10">

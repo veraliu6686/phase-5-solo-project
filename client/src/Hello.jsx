@@ -4,15 +4,15 @@ import Logo from "./assets/petMemo_logo.png"
 
 function Hello(){
     return (
-        <div >
+        <div  className="flex flex-col items-center pb-10">
             <div>
                 < img id = "lg-logo"src = {Logo} alt = "logo"/>
             </div>
-            <div className = "center-con">
+            <div >
                 <h1> Welcome to petMemo!!!</h1>
-                <div className = "center-div">
-                    <NavLink to = "/signup" className = "nav-item"> Sign Up here</NavLink>
-                    <NavLink to = "/login" className = "nav-item"> Yo! Log In!</NavLink>
+                <div className="flex flex-col items-center pb-10">
+                    <NavLink to = "/signup" className = "text-lg hover:text-primary hover:border-2 hover:border-primary px-4 border-inherit border-dashed rounded-md"> Sign Up here</NavLink>
+                    <NavLink to = "/login" className = "text-lg  hover:text-secondary hover:border-2 border-secondary px-4 border-dashed rounded-md"> Yo! Log In!</NavLink>
                 </div>
             </div>
         </div>

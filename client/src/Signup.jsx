@@ -48,54 +48,56 @@ function Signup ({updateUser}) {
     }
 
     return (
-        <div className = "con">
-            <form onSubmit = {handleSubmit} className = "form">
-                <div className = "title">
+        <div className = "text-lg mt-48 flex flex-col justify-center text-center">
+            <form onSubmit = {handleSubmit} >
+                <div className = "text-primary">
                     <h1>SIGN UP</h1>
                 </div>
-                <div className = "input-box">
-                    <div className = "input-div">
+                <div>
+                    <div>
                         <span className = "line">
-                            <i className = "fa-solid fa-user fa-lg"></i>
+                            <i className = "fa-solid fa-user text-base text-warning mx-4"></i>
                             <input
                                 type = "text"
-                                placeholder = "enter username"
+                                placeholder = " enter username"
                                 name = "username"
                                 value = {username}
                                 onChange = {handleChange}
                                 />
                         </span>
                     </div>
-                    <div className = "input-div">
+                    <div>
                         <span className = "line">
-                            <i className = "fa-solid fa-envelope"></i>
+                            <i className = "fa-solid fa-envelope text-base text-warning mx-4"></i>
                             <input
                                 type = "text"
-                                placeholder = "enter your email"
+                                placeholder = " enter your email"
                                 name = "email"
                                 value = {email}
                                 onChange = {handleChange}
                             />
                         </span>
                     </div>
-                    <div className = "input-div">
+                    <div>
                         <span className = "line">
-                        <i className = "fa-solid fa-lock fa-lg"></i>
+                        <i className = "fa-solid fa-lock text-base text-warning mx-4"></i>
                         <input
                             type = "password"
-                            placeholder = 'enter password'
+                            placeholder = " enter password"
                             name = "password"
                             value = {password}
                             onChange = {handleChange}
                         />
                         </span>
                     </div>
-                    <div className = "submit-btn">
-                        <button type = "submit"> Sign Me</button>
-                    </div>
-                    <p className = "link-btn" onClick = {()=> navigate("/login")}>
+                    <button
+                        type="submit"
+                        className="text-white hover:text-white w-48 bg-base-200 hover:bg-secondary rounded-xl text-base hover:text-base px-2 mb-2 focus:outline-none">
+                        Sign me
+                    </button>
+                    <p className = "text-primary hover:text-base-300 cursor-pointer" onClick = {()=> navigate("/login")}>
                         Nonono, I want to go to
-                        <span className = "highlight-text"> LOGIN </span>
+                        <span className = "text-warning"> LOGIN </span>
                         instead
                     </p>
                 </div>

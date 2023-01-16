@@ -27,7 +27,7 @@ module.exports = {
     require('daisyui'),
   ],
   daisyui: {
-  themes: ["dark", "synthwave", "retro", "valentine", "garden", "forest", "aqua", "coffee"],
+  themes: ["dark", "retro", "valentine", "garden", "forest", "dracula","aqua"],
   },
   // purge: {
   //     content: ['yourfiles/**/*.html'],

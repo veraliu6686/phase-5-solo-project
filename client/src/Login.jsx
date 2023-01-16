@@ -41,47 +41,51 @@ function Login ({updateUser}) {
     }
 
     return (
-        <div className = "con">
-            <form onSubmit = {handleSubmit} className = "form">
-                <div className = "title">
-                    <h1>LOG IN</h1>
-                </div>
-                <div className = "input-box">
-                    <div className = "input-div">
-                        <span className = "line">
-                            <i className = "fa-solid fa-user fa-lg"></i>
-                            <input
-                                type = "text"
-                                name = "username"
-                                value = {username}
-                                placeholder = "enter username"
-                                onChange = {handleChange}
-                            />
-                        </span>
+        <div className = "text-lg mt-48 flex flex-col justify-center text-center">
+            <div>
+                <form onSubmit = {handleSubmit}>
+                    <div className = "text-primary">
+                        <h1>LOG IN</h1>
                     </div>
-                    <div className = "input-div">
-                        <span className = "line">
-                            <i className = "fa-solid fa-lock fa-lg"></i>
-                            <input
-                                type = "password"
-                                name = "password"
-                                value = {password}
-                                placeholder = "enter password"
-                                onChange = {handleChange}
-                            />
-                        </span>
+                    <div>
+                        <div >
+                            <span className = "line">
+                                <i className = "fa-solid fa-user text-base text-warning mx-4"></i>
+                                <input
+                                    type = "text"
+                                    name = "username"
+                                    value = {username}
+                                    placeholder = "enter username"
+                                    onChange = {handleChange}
+                                />
+                            </span>
+                        </div>
+                        <div>
+                            <span className = "line">
+                                <i className = "fa-solid fa-lock text-base text-warning mx-4"></i>
+                                <input
+                                    type = "password"
+                                    name = "password"
+                                    value = {password}
+                                    placeholder = "enter password"
+                                    onChange = {handleChange}
+                                />
+                            </span>
+                        </div>
                     </div>
-                </div>
-                <div className = "submit-btn">
-                    <button type = "submit"> Login</button>
-                </div>
-                <p className = "link-btn" onClick = {()=> navigate("/signup")}>
-                    Ahhh, I need an account.
-                    <span className = "highlight-text"> SIGN ME UP </span>
-                    !
-                </p>
-                {errors? <div className = "error-message">{errors}</div>: null}
-            </form>
+                    <button
+                        type="submit"
+                        className="text-white hover:text-white w-48 bg-base-200 hover:bg-secondary rounded-xl text-base hover:text-base px-2 mb-2 focus:outline-none">
+                        Log in
+                    </button>
+                    <p className = "text-primary hover:text-base-300 cursor-pointer" onClick = {()=> navigate("/signup")}>
+                        Ahhh, I need an account.
+                        <span className = "text-warning"> SIGN ME UP </span>
+                        !
+                    </p>
+                    {errors? <div className = "error-message">{errors}</div>: null}
+                </form>
+            </div>
         </div>
     )
 }

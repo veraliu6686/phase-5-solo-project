@@ -33,7 +33,7 @@ function App() {
       }
     })
   },[])
-  console.log(currentUser)
+  // console.log(currentUser)
 
   useEffect (()=>{
       fetch("api/pets")
@@ -50,13 +50,13 @@ function App() {
   return (
     <div>
       <div className = "dropdown dropdown-right">
-        <label tabIndex = {0}  for = "underline_select" className = "sr-only">Color Theme</label>
+        <label tabIndex = {0}  htmlFor = "underline_select" className = "sr-only">Color Theme</label>
         <select data-choose-theme tabIndex = {0} id = "underline_select" className = "block py-2.5 px-2 mx-8 text-center text-base text-primary bg-transparent border-0 border-b-2 border-accent appearance-none ">
           <option value = "aqua">Aqua</option>
-          <option value = "coffee">Coffeee</option>
           <option value = "dark">Dark</option>
+          <option value = "dracula">Dracula</option>
           <option value = "garden">Garden</option>
-          <option value = "retro">Rretro</option> 
+          <option value = "retro">Rretro</option>
           <option value = "valentine">Valentine</option>
         </select>
       </div>

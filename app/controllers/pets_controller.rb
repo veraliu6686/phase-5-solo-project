@@ -10,7 +10,7 @@ class PetsController < ApplicationController
 
     def create
         new_pet = Pet.create!(pet_params)
-        render json: new_pet, status: :create
+        render json: new_pet, status: :created
     end
 
     def update
@@ -21,7 +21,7 @@ class PetsController < ApplicationController
     private
 
     def pet_params
-        params.permit( :name, :gender, :sterilized, :arrival_date, :weight, :image)
+        params.require(:pet).permit( :name, :gender, :sterilized, :arrival_date, :weight, :image, :user_id)
     end
 
     def find_pet

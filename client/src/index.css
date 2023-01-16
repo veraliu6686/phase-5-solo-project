@@ -23,19 +23,13 @@
   }
 
 }
+/* *{
+  border: 1px solid red;
+} */
 
-/* reusable */
+/* login/signup form */
 
-.center-con,.con{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-.center-div{
-  display: grid;
-}
-
-input{
+input {
   outline: none;
   background: transparent;
   width: 240px;
@@ -46,58 +40,11 @@ input{
 }
 
 input:focus {
-  color: #f2df79;
+  color: var(--text-secondary-content);
 }
 
 input:focus::placeholder {
   opacity: 0;
-}
-
-button:hover{
-  font-weight: 700;
-  font-size: 1.1rem;
-  background-color: #f2df79;
-  color: #646464;
-  border: none;
-}
-/* reusable end */
-
-/* navbar */
-#logo{
-  width: 500px;
-  margin: auto;
-}
-
-#lg-logo{
-  z-index: 10;
-}
-/* navbar end*/
-
-/* icons setting */
-.fa-solid{
-  font-size: .8rem;
-  color: white;
-}
-
-.fa-right-from-bracket{
-  font-size: 1rem;
-  margin-top: 12px;
-}
-
-.fa-right-from-bracket:hover{
-  cursor: pointer;
-  color: #f2df79;
-}
-/* icons end */
-
-/* login/signup form */
-.form{
-  margin: auto;
-  text-align: center;
-}
-
-.title{
-  color: #f2df79;
 }
 
 .input-box{
@@ -115,30 +62,4 @@ button:hover{
   justify-content: space-around;
 }
 
-.input-div i{
-  margin-right: 5px;
-}
-
-.submit-btn button{
-  font-family: 'East Sea Dokdo', cursive;
-  width: 270px;
-  font-size: 1rem;
-  margin: 10px;
-}
-
-.link-btn{
-  color: #f2df79;
-}
-
-.link-btn:hover{
-  cursor: pointer;
-  color: aqua;
-  padding: 0 10px;
-  border-left: #fff 5px double;
-  border-right: #fff 5px double;
-}
-
-.highlight-text{
-  color: aliceblue;
-}
 /* login/signup form end */
