@@ -1,6 +1,6 @@
 class DiariesController < ApplicationController
     def index
-        render json: Diary.all, status: :ok
+        render json: Diary.all.order(created_at: :desc), status: :ok
     end
 
     def show
@@ -17,7 +17,7 @@ class DiariesController < ApplicationController
         render json: update_diary
     end
 
-    def delete
+    def destroy
         find_diary.destroy
         head :no_content
     end

@@ -48,15 +48,17 @@ function PetPen ({pets, setPets, currentUser}) {
     const renderPet = pets.map( pet => {
         return (
             <div key = {pet.id} className = "px-5 carousel-item">
-                <PetCard key = {pet.id} pet = {pet}/>
+                <PetCard key = {pet.id} pet = {pet} setPets = {setPets}/>
             </div>
         )
     })
     return (
         <div className="flex flex-col justify-center items-center mt-10">
+            {/* button to render add form */}
             <label htmlFor="my-modal-6" className="btn text-lg mb-5 ml-10">ADD A BABY</label>
             <input type="checkbox" id="my-modal-6" className="modal-toggle" />
-            <div className="modal modal-bottom sm:modal-middle">
+            {/* popover add form */}
+            <div className="modal modal-bottom sm:modal-middle backdrop-blur-lg">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg"> Start the Journey with <span className = "uppercase text-primary-focus"> {nameInput}</span> </h3>
                 <form  onSubmit = {handleSubmit} className = "form-control w-full max-w-xs">
@@ -119,11 +121,11 @@ function PetPen ({pets, setPets, currentUser}) {
                     <label htmlFor="my-modal-6" className="btn text-lg hover:text-white"> x </label>
                     </div>
                 </div>
-                </div>
-                {/* <div className = " relative overflow-hidden border-2 border-black p-10  carousel"> */}
-                <div className = "carousel carousel-center w-5/6 p-10 space-x-4 rounded-box">
+            </div>
+            {/* pet gallery */}
+            <div className = "carousel carousel-center w-5/6 p-10 space-x-4 rounded-box">
 
-
+                    {/* left $ right control */}
                     {/* <div>
                         <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
                         <span class="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
@@ -142,7 +144,9 @@ function PetPen ({pets, setPets, currentUser}) {
                     <div className = "flex items-stretch overscroll-x-auto">
                         {renderPet}
                     </div>
-                </div>
+            </div>
+
+
         </div>
     )
 }

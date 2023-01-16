@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import DiaryCard from "./DiaryCard"
 
 function DiaryMain ({pets, diaries, setDiaries, currentUser}) {
-    // :date, :title, :content, :tag, :image, :likes, :pet_id, :user_id
 
     const [dateInput, setDate] = useState("")
     const [titleInput, setTitle] = useState("")
@@ -41,14 +40,14 @@ function DiaryMain ({pets, diaries, setDiaries, currentUser}) {
     const renderDiary = diaries.map( diary => {
         return (
             <div className= "items-center" key = {diary.id}>
-                <DiaryCard key = {diary.id} diary = {diary}/>
+                <DiaryCard key = {diary.id} diary = {diary} setDiaries = {setDiaries}/>
             </div>
         )
     })
 
     const displayPetName = pets.map( pet => {
         return(
-                <option value = {pet.id} >{pet.name}</option>
+                <option value = {pet.id} key = {pet.id} >{pet.name}</option>
         )
     })
     return (
@@ -57,7 +56,7 @@ function DiaryMain ({pets, diaries, setDiaries, currentUser}) {
             <label htmlFor="my-modal-6" className="btn text-lg my-5 ml-10">record my day</label>
             {/* Put this part before </body> tag */}
             <input type="checkbox" id="my-modal-6" className="modal-toggle" />
-            <div className="modal modal-bottom sm:modal-middle">
+            <div className="modal modal-bottom sm:modal-middle backdrop-blur-2xl">
             <div className="modal-box">
             <form onSubmit = {handleSubmit} className = "text-base form-control w-full max-w-xs">
                 <input
@@ -111,7 +110,7 @@ function DiaryMain ({pets, diaries, setDiaries, currentUser}) {
                 </div>
             </div>
             </div>
-            <div className= "lg:w-1/2 md:w-4/5">
+            <div className= "lg:w-1/2 w-4/5">
                 {renderDiary}
             </div>
         </div>

@@ -63,12 +63,18 @@ function App() {
       { currentUser ? <Nav updateUser = {updateUser}/> : <></>}
       <Routes>
         <Route exact path = "/" element = {<Hello />}></Route>
-        <Route exact path = "/home" element = {<Home pets = {pets} />}></Route>
         <Route path = "/login" element = {<Login updateUser = {updateUser} />}></Route>
         <Route path = "/signup" element = {<Signup updateUser = {updateUser} />}></Route>
-        <Route path = "/memo" element = {<DiaryMain pets = {pets} diaries = {diaries} setDiaries = {setDiaries} currentUser = {currentUser}/>}></Route>
-        <Route path = "/pets" element = {<PetPen pets = {pets} setPets = {setPets} currentUser = {currentUser}/>}></Route>
+         { currentUser &&
+         <>
+          <Route exact path = "/home" element = {<Home pets = {pets} />}></Route>
+          <Route path = "/memo" element = {<DiaryMain pets = {pets} diaries = {diaries} setDiaries = {setDiaries} currentUser = {currentUser}/>}></Route>
+          <Route path = "/pets" element = {<PetPen pets = {pets} setPets = {setPets} currentUser = {currentUser}/>}></Route>
+         </>
+        }
       </Routes>
+
+
     </div>
   )
 }
