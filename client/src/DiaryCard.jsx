@@ -1,10 +1,10 @@
 import React from "react"
 
-function DiaryCard ({diary,setDiaries}) {
+function DiaryCard ({diary, setUserDiaries}) {
     const {date,title, content, tag, image, likes,id} = diary
 
     const deleteDiary= id => {
-        setDiaries(current => current.filter( diary => diary.id !== id ))
+        setUserDiaries(current => current.filter( diary => diary.id !== id ))
     }
 
     const handleDelete = () => {
@@ -13,7 +13,6 @@ function DiaryCard ({diary,setDiaries}) {
             headers: {'Content-Type': 'application/json'}
         })
         .then( () => { deleteDiary(id)} )
-
     }
 
     return (

@@ -1,8 +1,8 @@
 import React from "react"
 
-function Home ({pets}) {
+function Home ({currentUser}) {
 
-    const renderPet = pets.map( pet => {
+    const renderPet =currentUser.pets.map( pet => {
         return (
             <div className="flex flex-col items-center pb-10">
                 <img className="w-48 h-48 mb-3 rounded-full shadow-lg object-cover" src = {pet.image} alt = {pet.name}/>

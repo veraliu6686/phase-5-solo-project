@@ -1,10 +1,11 @@
 import React, { useState } from "react"
 import PetCard from "./PetCard"
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function PetPen ({pets, setPets, currentUser}) {
+function PetPen ({currentUser}) {
     // const [startDate, setStartDate] = useState(new Date())
+    const [userPets, setUserPets] = useState(currentUser.pets)
     const [nameInput, setName] = useState ("")
     const [dateInput, setDate] = useState ("")
     const [imageInput, setImage] = useState ("")
@@ -30,14 +31,14 @@ function PetPen ({pets, setPets, currentUser}) {
             body: JSON.stringify({pet})
         })
         .then(res => res.json())
-        .then(newPetData => setPets([newPetData, ...pets]))
+        .then(newPetData => setUserPets([newPetData, ...userPets]))
         setName("")
         setDate("")
         setImage("")
         setWeight("")
         setGender("")
         setSterilized("")
-            setSubmited(!submited)
+        setSubmited(!submited)
     }
 
     // const handleDateChange = date => {
@@ -45,10 +46,10 @@ function PetPen ({pets, setPets, currentUser}) {
     //     setStartDate( selectedDateFromCalender)
     // }
 
-    const renderPet = pets.map( pet => {
+    const renderPet = userPets.map( pet => {
         return (
             <div key = {pet.id} className = "px-5 carousel-item">
-                <PetCard key = {pet.id} pet = {pet} setPets = {setPets}/>
+                <PetCard key = {pet.id} pet = {pet} setUserPets = {setUserPets}/>
             </div>
         )
     })

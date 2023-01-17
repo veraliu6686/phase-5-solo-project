@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import DiaryCard from "./DiaryCard"
 
 function DiaryMain ({pets, diaries, setDiaries, currentUser}) {
-
+    const [userDiaries, setUserDiaries] = useState(currentUser.diaries)
     const [dateInput, setDate] = useState("")
     const [titleInput, setTitle] = useState("")
     const [contentInput, setContent] = useState("")
@@ -10,6 +10,7 @@ function DiaryMain ({pets, diaries, setDiaries, currentUser}) {
     const [imageInput, setImage] = useState ("")
     const [petInput, setPet] = useState("")
 
+    console.log(currentUser.diaries)
     const handleSubmit = e => {
         e.preventDefault();
         const diary ={
@@ -22,14 +23,13 @@ function DiaryMain ({pets, diaries, setDiaries, currentUser}) {
             pet_id: petInput,
             user_id: currentUser.id
         }
-        console.log(diary)
         fetch("/api/diaries",{
             method:"POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({diary})
         })
         .then(res => res.json())
-        .then(newMemo => setDiaries([newMemo, ...diaries]))
+        .then(newMemo => setUserDiaries([newMemo, ...userDiaries]))
         setDate("")
         setTitle("")
         setContent("")
@@ -37,15 +37,14 @@ function DiaryMain ({pets, diaries, setDiaries, currentUser}) {
         setImage("")
         setPet("")
     }
-    const renderDiary = diaries.map( diary => {
+    const renderDiary = userDiaries.map( diary => {
         return (
             <div className= "items-center" key = {diary.id}>
-                <DiaryCard key = {diary.id} diary = {diary} setDiaries = {setDiaries}/>
+                <DiaryCard key = {diary.id} diary = {diary} setUserDiaries = {setUserDiaries}/>
             </div>
         )
     })
-
-    const displayPetName = pets.map( pet => {
+    const displayPetName = currentUser.pets.map( pet => {
         return(
                 <option value = {pet.id} key = {pet.id} >{pet.name}</option>
         )
@@ -104,8 +103,7 @@ function DiaryMain ({pets, diaries, setDiaries, currentUser}) {
                     onChange = {(e)=>{setContent(e.target.value)}}/>
                     <button type = "submit" className = "btn btn-primary text-base hover:text-white hover:text-base">Add Memo</button>
             </form>
-
-                <div className="modal-action">
+            <div className="modal-action">
                 <label htmlFor="my-modal-6" className="btn text-base  hover:text-base">Yay!</label>
                 </div>
             </div>

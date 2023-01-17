@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { useNavigate } from 'react-router-dom'
 
-function Signup ({updateUser}) {
+function Signup ({setCurrentUser}) {
     let navigate = useNavigate()
     const [signupData, setSignupData] = useState({
         username: "",
@@ -27,7 +27,7 @@ function Signup ({updateUser}) {
           .then(res => {
             if (res.ok){
                 res.json().then(user => {
-                    updateUser(user)
+                    setCurrentUser(user)
                     navigate('/login')
                 })
             }else{

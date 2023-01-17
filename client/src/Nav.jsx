@@ -2,7 +2,7 @@ import React from "react"
 import { NavLink, useNavigate } from "react-router-dom"
 import Logo from "./assets/petMemo_logo_ch.png"
 
-function Nav ({updateUser}) {
+function Nav ({setCurrentUser}) {
     let navigate = useNavigate()
 
     const handleLogOut = () => {
@@ -11,7 +11,7 @@ function Nav ({updateUser}) {
         })
         .then(res =>{
         if(res.ok){
-            updateUser(false)
+            setCurrentUser(false)
             navigate("/login")
         }
         })

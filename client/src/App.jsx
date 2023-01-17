@@ -17,10 +17,8 @@ function App() {
   }, [])
 
   const [currentUser, setCurrentUser] = useState(false)
-  const [ pets, setPets] = useState ( [] )
-  const [ diaries, setDiaries] = useState ( [] )
-
-  const updateUser = (user) => setCurrentUser(user)
+  const [pets, setPets] = useState ( [] )
+  const [diaries, setDiaries] = useState ( [] )
 
   useEffect(() => {
     fetch("/api/authorized_user")
@@ -28,18 +26,19 @@ function App() {
       if (res.ok) {
         res.json()
         .then((user) => {
-          updateUser(user);
+          setCurrentUser(user)
         });
       }
     })
   },[])
-  // console.log(currentUser)
 
+  // console.log(currentUser.pets)
   useEffect (()=>{
       fetch("api/pets")
       .then(res => res.json())
       .then (setPets)
   }, [])
+
 
   useEffect (()=>{
       fetch("api/diaries")
@@ -60,14 +59,14 @@ function App() {
           <option value = "valentine">Valentine</option>
         </select>
       </div>
-      { currentUser ? <Nav updateUser = {updateUser}/> : <></>}
+      { currentUser ? <Nav setCurrentUser = {setCurrentUser}/> : <></>}
       <Routes>
         <Route exact path = "/" element = {<Hello />}></Route>
-        <Route path = "/login" element = {<Login updateUser = {updateUser} />}></Route>
-        <Route path = "/signup" element = {<Signup updateUser = {updateUser} />}></Route>
+        <Route path = "/login" element = {<Login setCurrentUser = {setCurrentUser} />}></Route>
+        <Route path = "/signup" element = {<Signup setCurrentUser = {setCurrentUser} />}></Route>
          { currentUser &&
          <>
-          <Route exact path = "/home" element = {<Home pets = {pets} />}></Route>
+          <Route exact path = "/home" element = {<Home pets = {pets} currentUser = {currentUser}/>}></Route>
           <Route path = "/memo" element = {<DiaryMain pets = {pets} diaries = {diaries} setDiaries = {setDiaries} currentUser = {currentUser}/>}></Route>
           <Route path = "/pets" element = {<PetPen pets = {pets} setPets = {setPets} currentUser = {currentUser}/>}></Route>
          </>

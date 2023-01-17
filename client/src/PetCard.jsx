@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react"
 
-function PetCard ({pet, setPets}) {
+function PetCard ({pet, setUserPets}) {
     const {name, gender, image, weight, sterilized, id} = pet
+     const [submited, setSubmited] = useState(false)
     // const [trueInput, setTrue] = useState(false)
     const [inputs, setInputs] = useState({
         name:"",
@@ -17,8 +18,8 @@ function PetCard ({pet, setPets}) {
         .then(petData => {setInputs(petData)})
     },[])
 
-     const updatePet = (updatedPet) => {
-        setPets(current => {
+    const updatePet = (updatedPet) => {
+         setUserPets(current => {
             return current.map(pet => {
              if (pet.id === updatedPet.id){
                return updatedPet
@@ -37,7 +38,8 @@ function PetCard ({pet, setPets}) {
             body: JSON.stringify(inputs)
         })
         .then ( res => res.json())
-        .then ( updatePet)
+        .then (pet=>{updatePet(pet)})
+        setSubmited(true)
     }
 
     const handleChange = (e) => {
@@ -59,6 +61,7 @@ function PetCard ({pet, setPets}) {
                 <label className="modal-box bg-slate-100 relative" htmlFor="">
                     <h3 className="font-bold text-3xl text-center text-neutral uppercase">{name}</h3>
                     <div className="flex justify-center">
+                    <div className="flex-col ">
                     <form className="form-control py-5" onSubmit={handleEditSubmit}>
                         <input
                             name="name"
@@ -87,20 +90,27 @@ function PetCard ({pet, setPets}) {
                         {
                         sterilized ?
                         <></> :
-                        <div className="flex flex-col input mb-5">
-                            <label className="cursor-pointer label">
-                            <span className="label-text text-lg text-neutral--focus mb-1">sterilized</span>
-                            <input
-                                name="sterilized"
-                                // value={trueInput}
-                                // onClick={handleClick}
-                                type="checkbox"
-                                className="toggle toggle-alert" />
-                            </label>
-                        </div>
+                         <select
+                            name="sterilized"
+                            value = {inputs.sterilized}
+                            onChange = {handleChange}
+                            className = "select select-bordered w-full max-w-xs text-[1.5rem] text-neutral mb-3">
+                            <option diabled="true" value = "">sterilized ?</option>
+                            <option value = "true">YES</option>
+                        </select>
                         }
                         <button className = "btn text-base border-0 hover:bg-warning hover:text-white " htmlFor = {`manage${id}`} type="submit"> confirm</button>
                     </form>
+                    { submited?
+                        <div className="bg-success h-8 opacity-50 rounded-lg w-5">
+                            <div className="flex">
+                                <i className="fa-solid fa-check text-base"></i>
+                                <span className="text-base">submited!</span>
+                            </div>
+                        </div>
+                    : <></>
+                    }
+                    </div>
                     </div>
                 </label>
             </label>
