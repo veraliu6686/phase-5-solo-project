@@ -10,7 +10,6 @@ function DiaryMain ({pets, diaries, setDiaries, currentUser}) {
     const [imageInput, setImage] = useState ("")
     const [petInput, setPet] = useState("")
 
-    console.log(currentUser.diaries)
     const handleSubmit = e => {
         e.preventDefault();
         const diary ={

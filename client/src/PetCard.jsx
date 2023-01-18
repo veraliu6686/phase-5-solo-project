@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from "react"
+// import { useNavigate } from 'react-router-dom'
 
 function PetCard ({pet, setUserPets}) {
+    //    let navigate = useNavigate()
     const {name, gender, image, weight, sterilized, id} = pet
-     const [submited, setSubmited] = useState(false)
+    const [submited, setSubmited] = useState(false)
     // const [trueInput, setTrue] = useState(false)
     const [inputs, setInputs] = useState({
         name:"",
@@ -16,10 +18,10 @@ function PetCard ({pet, setUserPets}) {
         fetch(`api/pets/${id}`)
         .then(res => res.json())
         .then(petData => {setInputs(petData)})
-    },[])
+    },[id])
 
     const updatePet = (updatedPet) => {
-         setUserPets(current => {
+        setUserPets(current => {
             return current.map(pet => {
              if (pet.id === updatedPet.id){
                return updatedPet
@@ -27,15 +29,24 @@ function PetCard ({pet, setUserPets}) {
                return pet
              }
             })
-          })
+        })
+        setInputs(updatedPet);
+        setSubmited(true)
     }
 
     const handleEditSubmit = e =>{
         e.preventDefault()
+        const pet={
+            name:inputs.name,
+            gender:inputs.gender,
+            image:inputs.image,
+            weight:inputs.weight,
+            sterilized:inputs.sterilized
+        }
         fetch(`/api/pets/${id}`, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(inputs)
+            body: JSON.stringify(pet)
         })
         .then ( res => res.json())
         .then (pet=>{updatePet(pet)})
@@ -122,7 +133,7 @@ function PetCard ({pet, setUserPets}) {
                 </div>
                 <div className="w-full max-w-sm border-secondary rounded-lg shadow-md">
                     <div className="flex flex-col items-center pb-10">
-                        <img className="w-48 h-48 mb-3 rounded-full shadow-lg object-cover" src = {image} alt = {name}/>
+                        <img className="w-48 h-48 mb-3 rounded-full shadow-lg object-cover" src = {image} alt = {name} />
                         <div className=" flex items-center mt-1">
                             <h5 className="text-2xl text-primary">{name}</h5>
                             {sterilized ?

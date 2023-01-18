@@ -5,7 +5,7 @@ import Nav from './Nav'
 import Hello from './Hello';
 import Home from './Home';
 import DiaryMain from './DiaryMain.jsx';
-import PetPen from './PetPen'
+import PetPen from './PetPen';
 import Login from './Login';
 import Signup from './Signup';
 import { themeChange } from 'theme-change'

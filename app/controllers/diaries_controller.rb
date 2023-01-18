@@ -13,8 +13,8 @@ class DiariesController < ApplicationController
     end
 
     def update
-        update_diary = find_diary.update!(diary_params)
-        render json: update_diary
+       find_diary.update!(diary_params)
+        render json: find_diary
     end
 
     def destroy

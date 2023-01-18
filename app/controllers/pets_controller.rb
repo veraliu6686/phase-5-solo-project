@@ -14,8 +14,8 @@ class PetsController < ApplicationController
     end
 
     def update
-        update_pet = find_pet.update!(pet_params)
-        render json: update_pet
+       find_pet.update!(pet_params)
+        render json: find_pet
     end
 
     private

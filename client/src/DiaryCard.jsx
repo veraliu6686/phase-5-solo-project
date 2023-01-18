@@ -1,7 +1,9 @@
-import React from "react"
+import React,{useState} from "react"
 
 function DiaryCard ({diary, setUserDiaries}) {
     const {date,title, content, tag, image, likes,id} = diary
+    const [edit, setEdit] = useState(false)
+    const [input, setInput] = useState("")
 
     const deleteDiary= id => {
         setUserDiaries(current => current.filter( diary => diary.id !== id ))
@@ -13,6 +15,30 @@ function DiaryCard ({diary, setUserDiaries}) {
             headers: {'Content-Type': 'application/json'}
         })
         .then( () => { deleteDiary(id)} )
+    }
+
+    const updateContent = (updatedContent) => {
+        setUserDiaries(current => {
+            return current.map(content => {
+             if (content.id === updatedContent.id){
+               return updatedContent
+             } else {
+               return content
+             }
+            })
+          })
+        }
+        
+    const handleSubmit = e =>{
+        e.preventDefault();
+        fetch(`/api/diaries/${id}`, {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({content: input})
+        })
+        .then ( res => res.json())
+        .then (updateContent)
+        setEdit(false)
     }
 
     return (
@@ -31,9 +57,24 @@ function DiaryCard ({diary, setUserDiaries}) {
                     <div className="badge badge-outline text-neutral bg-white inline-grid mt-1 ml-1">{tag}</div>
                     <p className="text-sm text-base-400 mt-4">{date}</p>
                 </div>
-                <div className="collapse-content text-secondary flex">
-                    <p className="object-center text-neutral bg-white px-2 rounded-xl">{content}</p>
-                </div>
+                {
+                    edit?
+                    <form className=" collapse-content form-control w-full text-secondary abosolute" onSubmit={handleSubmit}>
+                        <div >
+                            <textarea
+                                className=" textarea w-full text-neutral text-base bg-white px-2 rounded-xl"
+                                onChange={(e)=>{setInput(e.target.value)}}>
+                                {content}
+                            </textarea>
+                        </div>
+                        <button className="btn btn-sm text-base" type="submit">update</button>
+                    </form>
+                :
+                    <div className="collapse-content text-secondary flex">
+                        <i className="fa-solid fa-pen btn btn-sm flex" onClick={()=>{setEdit(true)}}></i>
+                        <p className="object-center text-neutral bg-white px-2 rounded-xl">{content}</p>
+                    </div>
+                }
                 <label className="btn btn-sm btn-circle absolute right-2 top-2 text-lg" onClick={handleDelete}>✕</label>
             </div>
         </div>
