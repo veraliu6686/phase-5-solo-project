@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { useNavigate } from 'react-router-dom'
 
-function Signup ({setCurrentUser}) {
+function Signup ({setCurrentUser, setLoggedin}) {
     let navigate = useNavigate()
     const [signupData, setSignupData] = useState({
         username: "",
@@ -16,7 +16,8 @@ function Signup ({setCurrentUser}) {
         const user = {
             username,
             email,
-            password
+            password,
+            avatar:"https://robohash.org/GLN.png?set=set4&size=150x150"
         }
 
         fetch('/api/users',{
@@ -27,6 +28,7 @@ function Signup ({setCurrentUser}) {
           .then(res => {
             if (res.ok){
                 res.json().then(user => {
+                    setLoggedin(false)
                     setCurrentUser(user)
                     navigate('/login')
                 })
@@ -58,6 +60,7 @@ function Signup ({setCurrentUser}) {
                         <span className = "line">
                             <i className = "fa-solid fa-user text-base text-warning mx-4"></i>
                             <input
+                                required
                                 type = "text"
                                 placeholder = " enter username"
                                 name = "username"
@@ -70,8 +73,9 @@ function Signup ({setCurrentUser}) {
                         <span className = "line">
                             <i className = "fa-solid fa-envelope text-base text-warning mx-4"></i>
                             <input
+                                required
                                 type = "text"
-                                placeholder = " enter your email"
+                                placeholder = "enter your email"
                                 name = "email"
                                 value = {email}
                                 onChange = {handleChange}
@@ -82,6 +86,7 @@ function Signup ({setCurrentUser}) {
                         <span className = "line">
                         <i className = "fa-solid fa-lock text-base text-warning mx-4"></i>
                         <input
+                            required
                             type = "password"
                             placeholder = " enter password"
                             name = "password"

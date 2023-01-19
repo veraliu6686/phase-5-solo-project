@@ -1,6 +1,6 @@
 class DiariesController < ApplicationController
     def index
-        render json: Diary.all.order(created_at: :desc), status: :ok
+        render json: Diary.all.order(likes: :desc), status: :ok
     end
 
     def show

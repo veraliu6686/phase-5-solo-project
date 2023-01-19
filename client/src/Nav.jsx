@@ -18,7 +18,7 @@ function Nav ({setCurrentUser}) {
     }
 
     return (
-        <nav className="navbar py-1 px-2 sm:px-4 w-full z-20 left-0 drop-shadow-xl" >
+        <nav className="navbar py-1 px-2 sm:px-4 w-full z-20 left-0 drop-shadow-xl pt-8" >
             <div className="w-1/3">
                 {/* hamburgr shows when screen smalled */}
                 <div className="dropdown ">
@@ -27,18 +27,20 @@ function Nav ({setCurrentUser}) {
                 </label>
                 <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                     <li><NavLink to = "/home" className="text-base">Home</NavLink></li>
-                    <li><NavLink to = "/memo" className="text-base">Diaries</NavLink></li>
-                    <li><NavLink to = "/pets" className="text-base">Pets</NavLink></li>
+                    <li><NavLink to = "/community" className="text-base">Community</NavLink></li>
+                    <li><NavLink to = "/memo" className="text-base">My Memo</NavLink></li>
+                    <li><NavLink to = "/pets" className="text-base">My Pets</NavLink></li>
                 </ul>
                 </div>
             </div>
-            <div className="left-0 md:w-1/3 w-full"><img src = {Logo} alt = "logo"/></div>
-            <div className="left-0 w-1/6"></div>
+            <div className=" md:w-2/3 w-full"><img src = {Logo} alt = "logo"/></div>
+            <div className="w-1/6"></div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     <li><NavLink to = "/home">Home</NavLink></li>
-                    <li><NavLink to = "/memo">Diaries</NavLink></li>
-                    <li><NavLink to = "/pets">Pets</NavLink></li>
+                    <li><NavLink to = "/community" className="text-base">Community</NavLink></li>
+                    <li><NavLink to = "/memo">My Memo</NavLink></li>
+                    <li><NavLink to = "/pets">My Pets</NavLink></li>
                 </ul>
             </div>
             {/* user avatar with personal settings */}

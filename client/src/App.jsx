@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import { Routes, Route } from 'react-router-dom';
+import { themeChange } from 'theme-change'
 import Nav from './Nav'
 import Hello from './Hello';
 import Home from './Home';
@@ -8,7 +9,7 @@ import DiaryMain from './DiaryMain.jsx';
 import PetPen from './PetPen';
 import Login from './Login';
 import Signup from './Signup';
-import { themeChange } from 'theme-change'
+import Community from './Community';
 
 function App() {
   useEffect(() => {
@@ -17,6 +18,7 @@ function App() {
   }, [])
 
   const [currentUser, setCurrentUser] = useState(false)
+  const [loggedin, setLoggedin] = useState(false)
   const [pets, setPets] = useState ( [] )
   const [diaries, setDiaries] = useState ( [] )
 
@@ -26,19 +28,18 @@ function App() {
       if (res.ok) {
         res.json()
         .then((user) => {
+          setLoggedin(true)
           setCurrentUser(user)
         });
       }
     })
   },[])
 
-  // console.log(currentUser.pets)
   useEffect (()=>{
       fetch("api/pets")
       .then(res => res.json())
       .then (setPets)
   }, [])
-
 
   useEffect (()=>{
       fetch("api/diaries")
@@ -48,9 +49,9 @@ function App() {
 
   return (
     <div>
-      <div className = "dropdown dropdown-right">
+      <div className = "dropdown absolute top-0 right-0 z-20">
         <label tabIndex = {0}  htmlFor = "underline_select" className = "sr-only">Color Theme</label>
-        <select data-choose-theme tabIndex = {0} id = "underline_select" className = "block py-2.5 px-2 mx-8 text-center text-base text-primary bg-transparent border-0 border-b-2 border-accent appearance-none ">
+        <select data-choose-theme tabIndex = {0} id = "underline_select" className = "block mx-8 text-center text-[1.5rem] text-primary bg-transparent border-b-2 border-accent appearance-none ">
           <option value = "aqua">Aqua</option>
           <option value = "dark">Dark</option>
           <option value = "dracula">Dracula</option>
@@ -59,16 +60,18 @@ function App() {
           <option value = "valentine">Valentine</option>
         </select>
       </div>
-      { currentUser ? <Nav setCurrentUser = {setCurrentUser}/> : <></>}
+      { loggedin && currentUser ? <Nav setCurrentUser = {setCurrentUser}/> : null}
       <Routes>
         <Route exact path = "/" element = {<Hello />}></Route>
-        <Route path = "/login" element = {<Login setCurrentUser = {setCurrentUser} />}></Route>
-        <Route path = "/signup" element = {<Signup setCurrentUser = {setCurrentUser} />}></Route>
-         { currentUser &&
+        <Route path = "/login" element = {<Login setCurrentUser = {setCurrentUser} setLoggedin={setLoggedin}/>}></Route>
+        <Route path = "/signup" element = {<Signup setCurrentUser = {setCurrentUser} setLoggedin={setLoggedin} />}></Route>
+        {
+          loggedin &&
          <>
           <Route exact path = "/home" element = {<Home pets = {pets} currentUser = {currentUser}/>}></Route>
-          <Route path = "/memo" element = {<DiaryMain pets = {pets} diaries = {diaries} setDiaries = {setDiaries} currentUser = {currentUser}/>}></Route>
-          <Route path = "/pets" element = {<PetPen pets = {pets} setPets = {setPets} currentUser = {currentUser}/>}></Route>
+          <Route exact path = "/community" element = {<Community pets = {pets} diaries={diaries}/>}></Route>
+          <Route path = "/memo" element = {<DiaryMain currentUser = {currentUser}/>}></Route>
+          <Route path = "/pets" element = {<PetPen currentUser = {currentUser}/>}></Route>
          </>
         }
       </Routes>

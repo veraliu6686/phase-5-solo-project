@@ -18,6 +18,10 @@ class PetsController < ApplicationController
         render json: find_pet
     end
 
+    def destroy
+        find_pet.destroy
+        head :no_content
+    end
     private
 
     def pet_params

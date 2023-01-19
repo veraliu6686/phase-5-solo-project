@@ -1,11 +1,9 @@
 import React, {useState, useEffect} from "react"
-// import { useNavigate } from 'react-router-dom'
+
 
 function PetCard ({pet, setUserPets}) {
-    //    let navigate = useNavigate()
     const {name, gender, image, weight, sterilized, id} = pet
     const [submited, setSubmited] = useState(false)
-    // const [trueInput, setTrue] = useState(false)
     const [inputs, setInputs] = useState({
         name:"",
         gender:"",
@@ -56,15 +54,21 @@ function PetCard ({pet, setUserPets}) {
     const handleChange = (e) => {
     const { name, value } = e.target
     setInputs({ ...inputs, [name]: value })
-  }
+    }
 
-    // const handleClick=(e)=>{
-    //     setTrue(!trueInput)
-    //     console.log(e.targe.value)
-    // }
+    const deletePet= id => {
+        setUserPets(current => current.filter( pet => pet.id !== id ))
+    }
+
+    const handleDelete = () => {
+        fetch(`/api/pets/${id}`, {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'}
+        })
+        .then( () => { deletePet(id)} )
+    }
 
     return (
-
         <div>
             {/* edit pet form */}
             <input type="checkbox" id={`manage${id}`} className="modal-toggle" />
@@ -74,33 +78,42 @@ function PetCard ({pet, setUserPets}) {
                     <div className="flex justify-center">
                     <div className="flex-col ">
                     <form className="form-control py-5" onSubmit={handleEditSubmit}>
-                        <input
+                        <div className="tooltip tooltip-right" data-tip="new name">
+                            <input
                             name="name"
                             value={inputs.name}
                             onChange={handleChange}
                             className="input input-bordered w-full max-w-xs text-base placeholder:text-neutral--focus"
                             placeholder={name}/>
+                        </div>
+                        <div className="tooltip tooltip-right" data-tip="Entered wrong?">
                         <input
                             name="gender"
                             value={inputs.gender}
                             onChange={handleChange}
                             className="input input-bordered w-full max-w-xs text-base text-neutral placeholder:text-neutral--focus"
                             placeholder={gender}/>
+                        </div>
+                        <div className="tooltip tooltip-right" data-tip="current weight">
                         <input
                             name="weight"
                             value={inputs.weight}
                             onChange={handleChange}
                             className="input input-bordered w-full max-w-xs text-base text-neutral  placeholder:text-neutral--focus"
                             placeholder={weight}/>
+                            </div>
+                        <div className="tooltip tooltip-right" data-tip="cutter image">
                         <input
                             name="image"
                             value={inputs.image}
                             onChange={handleChange}
                             className="input input-bordered w-full max-w-xs text-base text-neutral placeholder:text-neutral--focus"
                             placeholder={image}/>
+                        </div>
                         {
                         sterilized ?
                         <></> :
+                        <div className="tooltip tooltip-right" data-tip="OH NO!">
                          <select
                             name="sterilized"
                             value = {inputs.sterilized}
@@ -109,6 +122,7 @@ function PetCard ({pet, setUserPets}) {
                             <option diabled="true" value = "">sterilized ?</option>
                             <option value = "true">YES</option>
                         </select>
+                        </div>
                         }
                         <button className = "btn text-base border-0 hover:bg-warning hover:text-white " htmlFor = {`manage${id}`} type="submit"> confirm</button>
                     </form>
@@ -131,6 +145,9 @@ function PetCard ({pet, setUserPets}) {
                 <div className="indicator-item indicator-center indicator-bottom badge badge-primary">
                     <label htmlFor={`manage${id}`} className="btn btn-warning-focus rounded-full lowercase text-base hover:text-base hover:text-white">Manage</label>
                 </div>
+                {/* delete button */}
+                <span class="indicator-item badge badge-secondary cursor-pointer text-base" onClick={handleDelete}>✕</span>
+                {/* main info */}
                 <div className="w-full max-w-sm border-secondary rounded-lg shadow-md">
                     <div className="flex flex-col items-center pb-10">
                         <img className="w-48 h-48 mb-3 rounded-full shadow-lg object-cover" src = {image} alt = {name} />
