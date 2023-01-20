@@ -10,6 +10,7 @@ import PetPen from './PetPen';
 import Login from './Login';
 import Signup from './Signup';
 import Community from './Community';
+import UserDetail from './UserDetail';
 
 function App() {
   useEffect(() => {
@@ -21,6 +22,7 @@ function App() {
   const [loggedin, setLoggedin] = useState(false)
   const [pets, setPets] = useState ( [] )
   const [diaries, setDiaries] = useState ( [] )
+  const [users, setUsers] =useState ( [] )
 
   useEffect(() => {
     fetch("/api/authorized_user")
@@ -36,16 +38,22 @@ function App() {
   },[])
 
   useEffect (()=>{
-      fetch("api/pets")
+      fetch("/api/pets")
       .then(res => res.json())
       .then (setPets)
   }, [])
 
   useEffect (()=>{
-      fetch("api/diaries")
+      fetch("/api/diaries")
       .then(res => res.json())
       .then (setDiaries)
   }, [])
+
+  useEffect(()=>{
+      fetch("/api/users")
+      .then(res => res.json())
+      .then (setUsers)
+  },[])
 
   return (
     <div>
@@ -62,18 +70,17 @@ function App() {
       </div>
       { loggedin && currentUser ? <Nav setCurrentUser = {setCurrentUser}/> : null}
       <Routes>
-        <Route exact path = "/" element = {<Hello />}></Route>
-        <Route path = "/login" element = {<Login setCurrentUser = {setCurrentUser} setLoggedin={setLoggedin}/>}></Route>
-        <Route path = "/signup" element = {<Signup setCurrentUser = {setCurrentUser} setLoggedin={setLoggedin} />}></Route>
-        {
-          loggedin &&
-         <>
-          <Route exact path = "/home" element = {<Home pets = {pets} currentUser = {currentUser}/>}></Route>
-          <Route exact path = "/community" element = {<Community pets = {pets} diaries={diaries}/>}></Route>
-          <Route path = "/memo" element = {<DiaryMain currentUser = {currentUser}/>}></Route>
-          <Route path = "/pets" element = {<PetPen currentUser = {currentUser}/>}></Route>
-         </>
-        }
+        <Route path = "/" element = {<Hello />}></Route>
+        <Route path = "login" element = {<Login setCurrentUser = {setCurrentUser} setLoggedin={setLoggedin}/>}></Route>
+        <Route path = "signup" element = {<Signup setCurrentUser = {setCurrentUser} setLoggedin={setLoggedin} />}></Route>
+        {loggedin &&
+        <>
+          <Route path = "home" element = {<Home pets = {pets} currentUser = {currentUser}/>}></Route>
+          <Route path = "community" element = {<Community pets = {pets} diaries={diaries} users={users}/>}></Route>
+          <Route path = "users/:name" element = {<UserDetail users={users} currentUser = {currentUser}/>}></Route>
+          <Route path = "memo" element = {<DiaryMain currentUser = {currentUser}/>}></Route>
+          <Route path = "pets" element = {<PetPen currentUser = {currentUser}/>}></Route>
+        </>}
       </Routes>
 
 

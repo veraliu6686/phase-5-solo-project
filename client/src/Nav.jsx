@@ -18,7 +18,7 @@ function Nav ({setCurrentUser}) {
     }
 
     return (
-        <nav className="navbar py-1 px-2 sm:px-4 w-full z-20 left-0 drop-shadow-xl pt-8" >
+        <nav className="navbar py-1 px-2 sm:px-4 w-full left-0 drop-shadow-xl pt-8" >
             <div className="w-1/3">
                 {/* hamburgr shows when screen smalled */}
                 <div className="dropdown ">

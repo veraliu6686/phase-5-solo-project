@@ -1,6 +1,9 @@
 import React,{useState} from "react"
+import { useNavigate } from 'react-router-dom'
+
 export default function CommunityMemo({diary}){
-    const {content, title, image, tag, likes, id} = diary
+    let navigate = useNavigate()
+    const {content, title, image, tag, likes, id, user} = diary
     const [count, setCount] = useState(likes)
 
     const handleLikes = (e) =>{
@@ -15,13 +18,14 @@ export default function CommunityMemo({diary}){
         .then(newCount => {
            setCount(newCount)
         })
+    // mean to be here
     console.log(count)
     }
 
     return(
         <div >
-            <div className="card w-96 h-96 overflow-auto bg-white border-2 border-base shadow-xl">
-            <figure><img src={image} alt={tag} /></figure>
+            <div className="card md:w-72 w-48 overflow-auto bg-white border-2 border-base shadow-xl mb-8">
+            <figure onClick={()=>navigate(`/users/${user.username}`)}><img src={image} alt={tag} /></figure>
             <div className="card-body">
                 <h2 className="card-title">
                 {title}

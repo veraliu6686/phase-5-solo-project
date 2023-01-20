@@ -3,7 +3,7 @@ scope 'api' do
   resources :diaries
   resources :pets
   resources :users
-
+  resources :follows, only: [:index, :create, :destroy]
   post '/login', to: 'sessions#create'
   delete '/logout', to:'sessions#delete'
   get '/authorized_user', to: 'users#show'
