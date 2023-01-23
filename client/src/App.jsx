@@ -21,6 +21,7 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState(false)
   const [loggedin, setLoggedin] = useState(false)
+  const [updateFollow, setUpdateFollow] = useState(false)
   const [pets, setPets] = useState ( [] )
   const [diaries, setDiaries] = useState ( [] )
   const [users, setUsers] =useState ( [] )
@@ -54,7 +55,7 @@ function App() {
       fetch("/api/users")
       .then(res => res.json())
       .then (setUsers)
-  },[])
+  },[updateFollow])
 
   return (
     <div>
@@ -79,7 +80,7 @@ function App() {
         <>
           <Route path = "home" element = {<Home pets = {pets} currentUser = {currentUser}/>}></Route>
           <Route path = "community" element = {<Community pets = {pets} diaries={diaries} users={users}/>}></Route>
-          <Route path = "users/:name" element = {<UserDetail users={users} currentUser = {currentUser}/>}></Route>
+          <Route path = "users/:name" element = {<UserDetail users={users} currentUser = {currentUser} setUpdateFollow={setUpdateFollow}/>}></Route>
           <Route path = ":name" element = {<UserProfile currentUser = {currentUser} setCurrentUser = {setCurrentUser}/>}></Route>
           <Route path = "memo" element = {<DiaryMain currentUser = {currentUser}/>}></Route>
           <Route path = "pets" element = {<PetPen currentUser = {currentUser}/>}></Route>

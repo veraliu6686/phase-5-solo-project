@@ -162,7 +162,7 @@ function PetCard ({pet, setUserPets}) {
                     <label htmlFor={`manage${id}`} className="btn btn-warning-focus rounded-full lowercase text-base hover:text-base hover:text-white">Manage</label>
                 </div>
                 {/* delete button */}
-                <span className="indicator-item badge badge-secondary cursor-pointer text-base" onClick={handleDelete}>✕</span>
+                <span className="indicator-item badge badge-secondary cursor-pointer text-base hover:animate-bounce" onClick={handleDelete}>✕</span>
                 {/* main info */}
                 <div className="w-full max-w-sm border-secondary rounded-lg shadow-md">
                     <div className="flex flex-col items-center pb-10">

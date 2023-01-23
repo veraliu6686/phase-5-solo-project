@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  scope 'api' do
   resources :todos
-scope 'api' do
   resources :diaries
   resources :pets
   resources :users

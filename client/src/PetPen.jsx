@@ -146,7 +146,7 @@ function PetPen ({currentUser}) {
                             <option value = "false">false</option>
                         </select>
                         <button type = "submit" className = "btn btn-primary text-base hover:text-white hover:text-base">Add pet</button>
-                        {submited? <p className="py-4">Enjoy the time with you furry baby!</p> :<></>}
+                        {submited? <p className="py-4">Enjoy the time with you baby!</p> :<></>}
                         {errors?errors.map(e => <p className="py-4">{e.toUpperCase()}</p>):null}
                     </form>
                     <div className="modal-action">

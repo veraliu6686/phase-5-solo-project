@@ -4,14 +4,13 @@ import UserPetsInfo from "./UserPetsInfo"
 import FollowBtn from "./FollowBtn"
 
 
-export default function UserDetail({users, currentUser}) {
+export default function UserDetail({users, currentUser,setUpdateFollow}) {
     let {name}= useParams()
     const [errors, setErrors] = useState([])
 
     const renderUserInfo = users.map(user=>{
 
         if (user.username == name){
-            // console.log(user.avatar)
             const renderPetInfo = user.pets.map(pet=>{
                 return <UserPetsInfo key={pet.id} pet={pet}/>
             })
@@ -23,7 +22,8 @@ export default function UserDetail({users, currentUser}) {
                             <img className=" w-48 inline-block overflow-hidden rounded-full" src={user.avatar}/>
                             <h1 className="text-center"> {name}</h1>
                         </div>
-                        {<FollowBtn user={user} currentUser ={currentUser} setErrors={setErrors} />}
+                        <p> Followers: {user.followers.length}</p>
+                        {user&&<FollowBtn user={user} currentUser ={currentUser} setErrors={setErrors} setUpdateFollow={setUpdateFollow}/>}
                          {errors?<p className="py-4  w-24 text-sm text-accent">{errors}</p>:null}
                     </div>
                     <div className="flex flex-wrap w-2/3 ml-10 my-4">

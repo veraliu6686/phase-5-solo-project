@@ -27,14 +27,14 @@ export default function CommunityMemo({diary}){
             <div className="card md:w-72 w-48 overflow-auto bg-white border-2 border-base shadow-xl mb-8">
             <figure onClick={()=>navigate(`/users/${user.username}`)}><img src={image} alt={tag} /></figure>
             <div className="card-body">
-                <h2 className="card-title">
+                <h2 className="card-title text-neutral">
                 {title}
                 </h2>
-                <p className="text-[1.4rem]">{content}</p>
+                <p className="text-[1.4rem] text-neutral">{content}</p>
                 <div className="card-actions justify-end">
                 <div className="badge badge-outline">{tag}</div>
                 <span className="indicator-item indicator-center indicator-start badge badge-secondary cursor-pointer"  >
-                    <i className="fa-solid fa-heart text-sm mr-2"></i>
+                    <i className="fa-solid fa-heart text-sm mr-2 hover:animate-spin"></i>
                     <span className="text-base" onClick={handleLikes}>{likes}</span>
                 </span>
                 </div>

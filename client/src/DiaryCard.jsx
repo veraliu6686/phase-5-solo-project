@@ -28,7 +28,7 @@ function DiaryCard ({diary, setUserDiaries}) {
             })
           })
         }
-        
+
     const handleSubmit = e =>{
         e.preventDefault();
         fetch(`/api/diaries/${id}`, {
@@ -75,7 +75,7 @@ function DiaryCard ({diary, setUserDiaries}) {
                         <p className="object-center text-neutral bg-white px-2 rounded-xl">{content}</p>
                     </div>
                 }
-                <label className="btn btn-sm btn-circle absolute right-2 top-2 text-lg" onClick={handleDelete}>✕</label>
+                <label className="btn btn-sm btn-circle absolute right-2 top-2 text-lg hover:animate-bounce" onClick={handleDelete}>✕</label>
             </div>
         </div>
     )

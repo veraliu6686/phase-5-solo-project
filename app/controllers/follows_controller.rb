@@ -11,19 +11,10 @@ class FollowsController < ApplicationController
         head :no_content
     end
 
-    # # get list of following users
-    # def following
-    #     render json: Follow.where(follower_id: current_user.id), status: :ok
-    # end
-
-    # # get list of followers
-    # def followers
-    #     render json: Follow.where(followed_id: params[:id]),status: :ok
-    # end
-     private
+    private
 
     def follow_params
-        params.require(:follow).permit(:follower_id, :followed_id)
+        params.require(:follow).permit(:id, :follower_id, :followed_id)
     end
 
 end

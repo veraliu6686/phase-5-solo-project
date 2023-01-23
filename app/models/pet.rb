@@ -1,7 +1,7 @@
 class Pet < ApplicationRecord
-     has_many :diaries
+     has_many :diaries, dependent: :destroy
      has_many :users, through: :diaries
-     has_many :todo
+     has_many :todo, dependent: :destroy
      belongs_to :user
      # has_one_attached :image
 
