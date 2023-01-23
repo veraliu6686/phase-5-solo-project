@@ -1,5 +1,5 @@
 import React from "react"
-import { useNavigate, NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function Home ({currentUser}) {
      let navigate = useNavigate()
@@ -42,12 +42,82 @@ function Home ({currentUser}) {
     }
 
     return (
-        <div className="flex flex-col items-center mt-20">
+        <div className="flex flex-col items-center justify-center mt-20">
             <div className="mockup-window w-3/4 mb-10">
                 <div className="flex justify-center text-center px-4 border-t-2 border-base-300">{reminder(number)}</div>
             </div>
-            <div>
+            {/* <div>
                 {renderPet}
+            </div> */}
+            <div className="w-3/4 text-center flex flex-col items-center">
+                <h2>TODO LIST</h2>
+                <div className="text-[1.5rem] md:text-base ">
+  <table className="table" >
+
+    <thead>
+      <tr>
+        <th className="text-base">For</th>
+        <th className="text-base">Title</th>
+        <th className="text-base">Category</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td>
+          <div className="flex items-center space-x-3">
+            {/* <div className="avatar">
+              <div className="mask mask-squircle w-12 h-12">
+
+              </div>
+            </div> */}
+            <div>
+              <div className="font-bold">{currentUser.username}</div>
+            </div>
+          </div>
+        </td>
+        <td>
+          add your new baby <span className="text-neutral cursor-pointer hover:text-secondary" onClick ={()=>{navigate('/pets')}}> HERE</span>
+        </td>
+        <td>todo</td>
+        <td><label className="btn btn-sm btn-circle text-lg">✕</label></td>
+      </tr>
+
+      <tr>
+        <td>
+          <div className="flex items-center space-x-3">
+            {/* <div className="avatar">
+              <div className="mask mask-squircle w-12 h-12">
+
+              </div>
+            </div> */}
+            <div>
+              <div className="font-bold">{currentUser.username}</div>
+            </div>
+          </div>
+        </td>
+        <td>
+          recorder your day <span className="text-neutral cursor-pointer hover:text-secondary" onClick ={()=>{navigate('/pets')}}> HERE</span>
+        </td>
+        <td>todo</td>
+        <td><label className="btn btn-sm btn-circle text-lg">✕</label></td>
+      </tr>
+    </tbody>
+
+    <tfoot>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </tfoot>
+
+  </table>
+</div>
             </div>
         </div>
     )

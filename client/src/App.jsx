@@ -11,6 +11,7 @@ import Login from './Login';
 import Signup from './Signup';
 import Community from './Community';
 import UserDetail from './UserDetail';
+import UserProfile from './UserProfile';
 
 function App() {
   useEffect(() => {
@@ -68,7 +69,8 @@ function App() {
           <option value = "valentine">Valentine</option>
         </select>
       </div>
-      { loggedin && currentUser ? <Nav setCurrentUser = {setCurrentUser}/> : null}
+
+      { loggedin && currentUser ? <Nav currentUser = {currentUser} setCurrentUser = {setCurrentUser}/> : null}
       <Routes>
         <Route path = "/" element = {<Hello />}></Route>
         <Route path = "login" element = {<Login setCurrentUser = {setCurrentUser} setLoggedin={setLoggedin}/>}></Route>
@@ -78,6 +80,7 @@ function App() {
           <Route path = "home" element = {<Home pets = {pets} currentUser = {currentUser}/>}></Route>
           <Route path = "community" element = {<Community pets = {pets} diaries={diaries} users={users}/>}></Route>
           <Route path = "users/:name" element = {<UserDetail users={users} currentUser = {currentUser}/>}></Route>
+          <Route path = ":name" element = {<UserProfile currentUser = {currentUser} setCurrentUser = {setCurrentUser}/>}></Route>
           <Route path = "memo" element = {<DiaryMain currentUser = {currentUser}/>}></Route>
           <Route path = "pets" element = {<PetPen currentUser = {currentUser}/>}></Route>
         </>}

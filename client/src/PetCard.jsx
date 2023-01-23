@@ -2,10 +2,11 @@ import React, {useState, useEffect} from "react"
 
 
 function PetCard ({pet, setUserPets}) {
-    const {name, gender, image, weight, sterilized, id} = pet
+    const {name, gender, species, image, weight, sterilized, id} = pet
     const [submited, setSubmited] = useState(false)
     const [inputs, setInputs] = useState({
         name:"",
+        species: "",
         gender:"",
         image:"",
         weight:"",
@@ -36,6 +37,7 @@ function PetCard ({pet, setUserPets}) {
         e.preventDefault()
         const pet={
             name:inputs.name,
+            species:inputs.species,
             gender:inputs.gender,
             image:inputs.image,
             weight:inputs.weight,
@@ -86,6 +88,20 @@ function PetCard ({pet, setUserPets}) {
                             className="input input-bordered w-full max-w-xs text-base placeholder:text-neutral--focus"
                             placeholder={name}/>
                         </div>
+                        <select
+                            name="species"
+                            value = {inputs.species}
+                            onChange = {handleChange}
+                            className = "select select-bordered w-full max-w-xs text-[1.5rem] text-neutral mb-3">
+                            <option diabled="true" value = "">choose one</option>
+                            <option value = "bird">bird</option>
+                            <option value = "cat">cat</option>
+                            <option value = "dog">dog</option>
+                            <option value = "guinea pig">guinea pig</option>
+                            <option value = "reptile">reptile</option>
+                            <option value = "turtle">turtle</option>
+                            <option value = "other">other</option>
+                        </select>
                         <div className="tooltip tooltip-right" data-tip="Entered wrong?">
                         <input
                             name="gender"
@@ -146,7 +162,7 @@ function PetCard ({pet, setUserPets}) {
                     <label htmlFor={`manage${id}`} className="btn btn-warning-focus rounded-full lowercase text-base hover:text-base hover:text-white">Manage</label>
                 </div>
                 {/* delete button */}
-                <span class="indicator-item badge badge-secondary cursor-pointer text-base" onClick={handleDelete}>✕</span>
+                <span className="indicator-item badge badge-secondary cursor-pointer text-base" onClick={handleDelete}>✕</span>
                 {/* main info */}
                 <div className="w-full max-w-sm border-secondary rounded-lg shadow-md">
                     <div className="flex flex-col items-center pb-10">
@@ -158,6 +174,7 @@ function PetCard ({pet, setUserPets}) {
                             ( gender == "female") ?  <i className = "fa-solid fa-venus"></i> :<i className = "fa-solid fa-mars"></i>
                             }
                         </div>
+                        <p>{species}</p>
                         <span className= "text--slate-600 text-base">Weight: {weight}</span>
                     </div>
                 </div>

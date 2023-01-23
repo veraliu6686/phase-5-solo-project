@@ -12,7 +12,7 @@ export default function Community({pets, diaries, users}){
        return <CommunityMemo key={diary.id} diary={diary}/>
     })
     return(
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center mt-10">
             <div className="carousel carousel-center w-5/6 p-4 space-x-4 bg-neutral rounded-box my-10">
                 {/* {renderAllPets} */}
             </div>

@@ -3,11 +3,11 @@ class FollowsController < ApplicationController
         render json: Follow.all
     end
     def create
-        render json: Follow.create(follower_id: current_user.id, followed_id: params[:id]), status: :created
+        render json: Follow.create!(follow_params), status: :created
     end
 
     def destroy
-        Follow.find_by(follower_id: current_user.id, followed_id: params[:id]).destroy
+        Follow.find_by!(follower_id: current_user.id, followed_id: params[:followed_id]).destroy
         head :no_content
     end
 

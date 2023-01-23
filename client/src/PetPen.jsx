@@ -12,6 +12,7 @@ function PetPen ({currentUser}) {
 
     const [userPets, setUserPets] = useState(currentUser.pets)
     const [nameInput, setName] = useState ("")
+    const [speciesInput, setSpecies] = useState ("")
     const [imageInput, setImage] = useState ("")
     const [weightInput, setWeight] = useState ("")
     const [genderInput, setGender] = useState ("")
@@ -42,6 +43,7 @@ function PetPen ({currentUser}) {
                 .then(newPetData => setUserPets([newPetData, ...userPets]))
 
                 setName("")
+                setSpecies("")
                 setImage("")
                 setWeight("")
                 setGender("")
@@ -85,6 +87,19 @@ function PetPen ({currentUser}) {
                                 onChange = { e => {setName(e.target.value)}}
                                 />
                         </div>
+                        <select
+                            className = "select select-bordered w-full bg-white text-[1.5rem] text-base-200 mb-3 "
+                            value = {speciesInput}
+                            onChange = { e => {setSpecies(e.target.value)}}>
+                            <option diabled="true" value = "">choose one</option>
+                            <option value = "bird">bird</option>
+                            <option value = "cat">cat</option>
+                            <option value = "dog">dog</option>
+                            <option value = "guinea pig">guinea pig</option>
+                            <option value = "reptile">reptile</option>
+                            <option value = "turtle">turtle</option>
+                            <option value = "other">other</option>
+                        </select>
                         <div className="tooltip tooltip-right" data-tip="date arrival at home">
                             <DatePicker
                                 className = "input w-full bg-white focus:input-accent text-base"
