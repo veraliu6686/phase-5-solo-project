@@ -6,7 +6,7 @@ class User < ApplicationRecord
     has_many :followers, class_name: "Follow", foreign_key: "followed_id", dependent: :destroy
     has_many :following, class_name: "Follow", foreign_key: "follower_id", dependent: :destroy
 
-    # has_one_attached :avatar
+    has_one_attached :avatar
     # validate :acceptable_image
 
     def number_of_pets
