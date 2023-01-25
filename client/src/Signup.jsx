@@ -16,8 +16,7 @@ function Signup ({setCurrentUser, setLoggedin}) {
         const user = {
             username,
             email,
-            password,
-            avatar:"https://robohash.org/GLN.png?set=set4&size=150x150"
+            password
         }
 
         fetch('/api/users',{
