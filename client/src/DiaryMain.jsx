@@ -56,7 +56,7 @@ function DiaryMain ({currentUser}) {
         )
     })
     return (
-        <div className="flex flex-col justify-center items-center mt-10">
+        <div className="flex flex-col justify-center items-center mt-20 md:mt-10 ">
             {/* The button to open modal */}
             <label htmlFor="my-modal-6" className="btn text-lg my-5 ml-10">record my day</label>
             <input type="checkbox" id="my-modal-6" className="modal-toggle" />

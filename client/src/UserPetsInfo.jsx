@@ -1,5 +1,5 @@
 export default function UserPetsInfo({pet}){
-     const {name, gender, image, weight, sterilized} = pet
+     const {name, gender, image, sterilized} = pet
     return(
         <div>
             <div className="card bg-base-100 w-36 h-36 shadow-xl glass">

@@ -1,5 +1,4 @@
-export default function Todo({todo, setTodos}){
-
+export default function Todo({todo, setTodos, currentUser}){
     const deleteTodo= id => {
        setTodos(current => current.filter( todo => todo.id !== id ))
     }
@@ -13,6 +12,7 @@ export default function Todo({todo, setTodos}){
 
     return(
         <>
+           { currentUser.id == todo.user.id &&
             <tr>
                 <td>
                 <div className="flex items-center space-x-3">
@@ -29,7 +29,7 @@ export default function Todo({todo, setTodos}){
                 <td>{todo.title}</td>
                 <td>{todo.category}</td>
                 <td><label className="btn btn-sm btn-circle text-lg" onClick={handleDelete}>✕</label></td>
-            </tr>
+            </tr>}
         </>
     )
 }

@@ -19,12 +19,12 @@ function Home ({currentUser}) {
   },[])
 
   const renderTodo= todos.map(todo=>{
-    return <Todo key={todo.id} todo={todo} setTodos={setTodos}/>
+    return <Todo key={todo.id} todo={todo} setTodos={setTodos} currentUser={currentUser}/>
   })
   const renderPet = currentUser.pets.map( pet => {
-      return (
-        <option key={pet.id} value={pet.id}>{pet.name}</option>
-      )
+    return (
+      <option key={pet.id} value={pet.id}>{pet.name}</option>
+    )
   })
 
   const handleSubmit=e=>{
@@ -172,7 +172,7 @@ function Home ({currentUser}) {
                   <th></th>
                 </tr>
               </tfoot>
-
+              
             </table>
           </div>
         </div>

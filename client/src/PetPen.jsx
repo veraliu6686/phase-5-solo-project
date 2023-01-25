@@ -66,7 +66,7 @@ function PetPen ({currentUser}) {
     })
 
     return (
-        <div className="flex flex-col justify-center items-center mt-10">
+        <div className="flex flex-col justify-center items-center mt-20 md:mt-10">
             {/* button to render add form */}
             <label htmlFor="my-modal-6" className="btn text-lg mb-5 ml-10">ADD A BABY</label>
             <input type="checkbox" id="my-modal-6" className="modal-toggle" />
@@ -160,8 +160,6 @@ function PetPen ({currentUser}) {
                     {renderPet}
                 </div>
             </div>
-
-
         </div>
     )
 }

@@ -35,12 +35,6 @@ function Signup ({setCurrentUser, setLoggedin}) {
                 res.json().then(json => setErrors(Object.entries(json.errors)))
             }
         })
-
-        setSignupData({
-            username: "",
-            email: "",
-            password:""
-        })
     }
 
     const handleChange = (e) => {
@@ -61,7 +55,7 @@ function Signup ({setCurrentUser, setLoggedin}) {
                             <input
                                 required
                                 type = "text"
-                                placeholder = " enter username"
+                                placeholder = " create username"
                                 name = "username"
                                 value = {username}
                                 onChange = {handleChange}
@@ -72,7 +66,7 @@ function Signup ({setCurrentUser, setLoggedin}) {
                         <span className = "line">
                             <i className = "fa-solid fa-envelope text-base text-warning mx-4"></i>
                             <input
-                                required
+                                // required
                                 type = "text"
                                 placeholder = "enter your email"
                                 name = "email"
@@ -99,13 +93,17 @@ function Signup ({setCurrentUser, setLoggedin}) {
                         className="text-white hover:text-white w-48 bg-base-200 hover:bg-secondary rounded-xl text-base hover:text-base px-2 mb-2 focus:outline-none">
                         Sign me
                     </button>
+                    <div className="grid">
+                        {errors?errors.map(e => <div className = "error-message text-base md:w-1/3 place-self-center w-3/4 border-2 glass">
+                            <p className="flex flex-col mt-4"><span className="text-warning uppercase font-bold animate-bounce">{e[0]+ " : "}</span><span >{e[1][0]}</span><span >{e[1][1]}</span></p>
+                        </div>) : null}
+                    </div>
                     <p className = "text-primary hover:text-base-300 cursor-pointer" onClick = {()=> navigate("/login")}>
                         Nonono, I want to go to
                         <span className = "text-warning"> LOGIN </span>
                         instead
                     </p>
                 </div>
-                {errors?errors.map(e => <div className = "error-message">{e[0]+': ' + e[1]}</div>) : null}
             </form>
         </div>
     )

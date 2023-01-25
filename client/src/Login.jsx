@@ -79,12 +79,16 @@ function Login ({setCurrentUser, setLoggedin}) {
                         className="text-white hover:text-white w-48 bg-base-200 hover:bg-secondary rounded-xl text-base hover:text-base px-2 mb-2 focus:outline-none">
                         Log in
                     </button>
+                    <div className="grid">
+                        {errors? <div className = "error-message text-base text-warning-content place-self-center px-5 mt-4 glass animate-bounce">
+                            <p>{errors}</p>
+                        </div> : null}
+                    </div>
                     <p className = "text-primary hover:text-base-300 cursor-pointer" onClick = {()=> navigate("/signup")}>
                         Ahhh, I need an account.
                         <span className = "text-warning"> SIGN ME UP </span>
                         !
                     </p>
-                    {errors? <div className = "error-message">{errors}</div>: null}
                 </form>
             </div>
         </div>

@@ -43,13 +43,13 @@ function App() {
       fetch("/api/pets")
       .then(res => res.json())
       .then (setPets)
-  }, [])
+  }, [currentUser])
 
   useEffect (()=>{
       fetch("/api/diaries")
       .then(res => res.json())
       .then (setDiaries)
-  }, [])
+  }, [currentUser])
 
   useEffect(()=>{
       fetch("/api/users")
@@ -79,14 +79,13 @@ function App() {
         {loggedin &&
         <>
           <Route path = "home" element = {<Home pets = {pets} currentUser = {currentUser}/>}></Route>
-          <Route path = "community" element = {<Community pets = {pets} diaries={diaries} users={users}/>}></Route>
+          <Route path = "community" element = {<Community pets = {pets} diaries={diaries}/>}></Route>
           <Route path = "users/:name" element = {<UserDetail users={users} currentUser = {currentUser} setUpdateFollow={setUpdateFollow}/>}></Route>
-          <Route path = ":name" element = {<UserProfile currentUser = {currentUser} setCurrentUser = {setCurrentUser}/>}></Route>
+          <Route path = ":name" element = {<UserProfile currentUser = {currentUser}/>}></Route>
           <Route path = "memo" element = {<DiaryMain currentUser = {currentUser}/>}></Route>
           <Route path = "pets" element = {<PetPen currentUser = {currentUser}/>}></Route>
         </>}
       </Routes>
-
 
     </div>
   )

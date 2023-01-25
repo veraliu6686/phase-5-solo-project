@@ -2,8 +2,9 @@ import React, {useState, useEffect} from "react"
 
 
 function PetCard ({pet, setUserPets}) {
-    const {name, gender, species, image, weight, sterilized, id} = pet
+    const {name, gender, image, weight, sterilized, id} = pet
     const [submited, setSubmited] = useState(false)
+    const [isDisabled, setIsDisabled] = useState(false);
     const [inputs, setInputs] = useState({
         name:"",
         species: "",
@@ -58,16 +59,22 @@ function PetCard ({pet, setUserPets}) {
     setInputs({ ...inputs, [name]: value })
     }
 
-    const deletePet= id => {
-        setUserPets(current => current.filter( pet => pet.id !== id ))
-    }
+    // const deletePet= id => {
+    //     setUserPets(current => current.filter( pet => pet.id !== id ))
+    // }
 
-    const handleDelete = () => {
-        fetch(`/api/pets/${id}`, {
-            method: 'DELETE',
-            headers: {'Content-Type': 'application/json'}
-        })
-        .then( () => { deletePet(id)} )
+    const handleDelete = (e) => {
+        const classNameList = e.target.parentNode.classList
+        classNameList.contains("grayscale") ?
+        classNameList.remove("grayscale"):
+        classNameList.add("grayscale")
+
+        setIsDisabled(!isDisabled)
+        // fetch(`/api/pets/${id}`, {
+        //     method: 'DELETE',
+        //     headers: {'Content-Type': 'application/json'}
+        // })
+        // .then( () => { deletePet(id)} )
     }
 
     return (
@@ -89,6 +96,7 @@ function PetCard ({pet, setUserPets}) {
                             placeholder={name}/>
                         </div>
                         <select
+                            required
                             name="species"
                             value = {inputs.species}
                             onChange = {handleChange}
@@ -100,6 +108,7 @@ function PetCard ({pet, setUserPets}) {
                             <option value = "guinea pig">guinea pig</option>
                             <option value = "reptile">reptile</option>
                             <option value = "turtle">turtle</option>
+                            <option value = "small animal">small animal</option>
                             <option value = "other">other</option>
                         </select>
                         <div className="tooltip tooltip-right" data-tip="Entered wrong?">
@@ -159,7 +168,7 @@ function PetCard ({pet, setUserPets}) {
             <div className = "indicator mx-5">
                 {/* manage pet button */}
                 <div className="indicator-item indicator-center indicator-bottom badge badge-primary">
-                    <label htmlFor={`manage${id}`} className="btn btn-warning-focus rounded-full lowercase text-base hover:text-base hover:text-white">Manage</label>
+                    <label htmlFor={`manage${id}`} className="btn btn-warning-focus rounded-full lowercase text-base hover:text-base hover:text-white" disabled={isDisabled} >Manage</label>
                 </div>
                 {/* delete button */}
                 <span className="indicator-item badge badge-secondary cursor-pointer text-base hover:animate-bounce" onClick={handleDelete}>✕</span>
@@ -174,7 +183,6 @@ function PetCard ({pet, setUserPets}) {
                             ( gender == "female") ?  <i className = "fa-solid fa-venus"></i> :<i className = "fa-solid fa-mars"></i>
                             }
                         </div>
-                        <p>{species}</p>
                         <span className= "text--slate-600 text-base">Weight: {weight}</span>
                     </div>
                 </div>

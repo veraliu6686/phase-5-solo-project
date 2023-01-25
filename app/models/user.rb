@@ -6,10 +6,10 @@ class User < ApplicationRecord
     has_many :followers, class_name: "Follow", foreign_key: "followed_id", dependent: :destroy
     has_many :following, class_name: "Follow", foreign_key: "follower_id", dependent: :destroy
 
-    validates :password, format: { with: /\A(?=.*[A-Z])(?=.*[a-z])(?=.*\d).+\z/,
-        message: "must include at least one capital letter, one lowercase letter, and one number" },
-        if: :password_required?
-    validates :password, length: { minimum: 8, message: "must be at least 8 characters long" }, unless: :password_blank?
+    validates :password, format: { with: /[A-Z]/, message: "must include at least one capital letter!" }, if: :password_required?, on: :create
+    validates :password, format: { with: /[a-z]/, message: "must include at least one lowercase letter!" }, if: :password_required?, on: :create
+    validates :password, format: { with: /\d/, message: "must include at least one number!" }, if: :password_required?, on: :create
+    validates :password, length: { minimum: 8, message: "must be at least 8 characters long." }, unless: :password_blank?
 
     def password_required?
         !password.blank?

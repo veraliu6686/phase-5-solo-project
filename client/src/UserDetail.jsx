@@ -24,7 +24,11 @@ export default function UserDetail({users, currentUser,setUpdateFollow}) {
                         </div>
                         <p> Followers: {user.followers.length}</p>
                         {user&&<FollowBtn user={user} currentUser ={currentUser} setErrors={setErrors} setUpdateFollow={setUpdateFollow}/>}
-                         {errors?<p className="py-4  w-24 text-sm text-accent">{errors}</p>:null}
+                         <div >
+                        {errors? <div className = "text-warning place-self-center">
+                            <p>{errors}</p>
+                        </div> : null}
+                    </div>
                     </div>
                     <div className="flex flex-wrap w-2/3 ml-10 my-4">
                         {renderPetInfo}
