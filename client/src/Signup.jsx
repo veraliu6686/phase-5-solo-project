@@ -66,7 +66,7 @@ function Signup ({setCurrentUser, setLoggedin}) {
                         <span className = "line">
                             <i className = "fa-solid fa-envelope text-base text-warning mx-4"></i>
                             <input
-                                // required
+                                required
                                 type = "text"
                                 placeholder = "enter your email"
                                 name = "email"

@@ -41,8 +41,13 @@ export default function FollowBtn({user, currentUser, setErrors, setUpdateFollow
     }
 
     return(
+        <>
+        { user.id === currentUser.id ? <></> :
+
         <button className="btn btn-warning rounded-full lowercase text-base hover:text-base hover:text-white items-center mb-5" onClick={handleFollow}> {followed? "unfollow ": "follow"}
         </button>
+        }
+        </>
     )
 
  }

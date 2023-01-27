@@ -67,7 +67,7 @@ function Home ({currentUser}) {
           )
       } else{
           return(
-              <h3> You current have <span className="text-neutral underline decoration-4"> {number} </span> babys. Take a good care of them!</h3>
+              <h3> You current have <span className="text-primary underline decoration-4"> {number} </span> babys. Take a good care of them!</h3>
           )
       }
   }
@@ -140,7 +140,7 @@ function Home ({currentUser}) {
                     </div>
                   </td>
                   <td>
-                    add your new baby <span className="text-neutral cursor-pointer hover:text-secondary" onClick={()=>{navigate('/pets')}}> HERE</span>
+                    add your new baby <span className="text-primary cursor-pointer hover:text-secondary" onClick={()=>{navigate('/pets')}}> HERE</span>
                   </td>
                   <td>todo</td>
                   <td></td>
@@ -155,7 +155,7 @@ function Home ({currentUser}) {
                     </div>
                   </td>
                   <td>
-                    recorder your day <span className="text-neutral cursor-pointer hover:text-secondary" onClick ={()=>{navigate('/pets')}}> HERE</span>
+                    recorder your day <span className="text-primary cursor-pointer hover:text-secondary" onClick ={()=>{navigate('/pets')}}> HERE</span>
                   </td>
                   <td>todo</td>
                   <td></td>
@@ -172,7 +172,7 @@ function Home ({currentUser}) {
                   <th></th>
                 </tr>
               </tfoot>
-              
+
             </table>
           </div>
         </div>

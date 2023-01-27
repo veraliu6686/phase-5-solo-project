@@ -25,6 +25,7 @@ function PetPen ({currentUser}) {
         e.preventDefault();
         const pet = {
             name: nameInput,
+            species: speciesInput,
             arrival_date: formattedDate,
             image: imageInput,
             weight: weightInput,
@@ -32,6 +33,7 @@ function PetPen ({currentUser}) {
             sterilized: sterilizedInput,
             user_id: currentUser.id
         }
+
         fetch("/api/pets",{
             method:"POST",
             headers: {"Content-Type": "application/json"},
@@ -51,6 +53,7 @@ function PetPen ({currentUser}) {
                 setSubmited(true)
             }else{
                 res.json().then(data => setErrors(Object.entries(data.errors).map(e => `${e[0]} ${e[1]}`)))
+                setTimeout(()=>setErrors(null),3000)
             }
         })
 

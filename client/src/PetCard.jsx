@@ -66,8 +66,7 @@ function PetCard ({pet, setUserPets}) {
     const handleDelete = (e) => {
         const classNameList = e.target.parentNode.classList
         classNameList.contains("grayscale") ?
-        classNameList.remove("grayscale"):
-        classNameList.add("grayscale")
+        null:classNameList.add("grayscale")
 
         setIsDisabled(!isDisabled)
         // fetch(`/api/pets/${id}`, {

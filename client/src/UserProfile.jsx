@@ -6,11 +6,11 @@ export default function UserProfile({currentUser}){
 const renderPet=pets.map(pet=>{
     return(
         <div key={pet.id} className="overflow-auto">
-            <div className="card w-72 h-128 bg-base-100 shadow-xl glass">
+            <div className="card h-96 bg-base-100 shadow-xl glass">
                 <div className="card-body">
                     <p className="text-[1.5rem]"> <span className="text-primary text-base font-bold">{pet.name}</span> has been accompanied with you for <span className="text-primary font-bold">{pet.days_from_today}</span> days</p>
                 </div>
-                <figure className="w-full  object-cover"><img src={pet.image} alt={pet.name} /></figure>
+                <figure className="w-full h-72 object-cover"><img src={pet.image} alt={pet.name} /></figure>
             </div>
         </div>
     )
