@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from "react"
 import { useNavigate } from 'react-router-dom'
 import Todo from "./Todo"
+import InventoryCalc from "./InventoryCalc"
 
 
 function Home ({currentUser}) {
@@ -74,9 +75,11 @@ function Home ({currentUser}) {
 
   return (
     <div className="flex flex-col items-center justify-center mt-20">
+      <InventoryCalc currentUser={currentUser} todos={todos} setTodos={setTodos}/>
         <div className="mockup-window w-3/4 mb-10">
             <div className="flex justify-center text-center px-4 border-t-2 border-base-300">{reminder(number)}</div>
         </div>
+        {/* todo form and table */}
         <div className="w-3/4 text-center flex flex-col items-center cursor-pointer">
             <h2 className="animate-bounce" onClick={()=>{setShow(!show)} }>TODO LIST</h2>
               {show?
@@ -155,7 +158,7 @@ function Home ({currentUser}) {
                     </div>
                   </td>
                   <td>
-                    recorder your day <span className="text-primary cursor-pointer hover:text-secondary" onClick ={()=>{navigate('/pets')}}> HERE</span>
+                    recorder your day <span className="text-primary cursor-pointer hover:text-secondary" onClick ={()=>{navigate('/memo')}}> HERE</span>
                   </td>
                   <td>todo</td>
                   <td></td>

@@ -66,7 +66,7 @@ function App() {
           <option value = "dark">Dark</option>
           <option value = "dracula">Dracula</option>
           <option value = "garden">Garden</option>
-          <option value = "retro">Rretro</option>
+          <option value = "retro">Retro</option>
           <option value = "valentine">Valentine</option>
         </select>
       </div>
@@ -81,7 +81,7 @@ function App() {
           <Route path = "home" element = {<Home pets = {pets} currentUser = {currentUser}/>}></Route>
           <Route path = "community" element = {<Community pets = {pets} diaries={diaries}/>}></Route>
           <Route path = "users/:name" element = {<UserDetail users={users} currentUser = {currentUser} setUpdateFollow={setUpdateFollow}/>}></Route>
-          <Route path = ":name" element = {<UserProfile currentUser = {currentUser}/>}></Route>
+          <Route path = "profile/:name" element = {<UserProfile currentUser = {currentUser}/>}></Route>
           <Route path = "memo" element = {<DiaryMain currentUser = {currentUser}/>}></Route>
           <Route path = "pets" element = {<PetPen currentUser = {currentUser}/>}></Route>
         </>}

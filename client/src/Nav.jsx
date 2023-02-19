@@ -51,7 +51,7 @@ function Nav ({currentUser, setCurrentUser}) {
                     </div>
                 </label>
                 <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content text-base bg-base-100 rounded-box w-45">
-                    <li><a className="justify-between text-base" onClick={()=>{navigate(`${currentUser.username}`)}}>Profile</a></li>
+                    <li><a className="justify-between text-base" onClick={()=>{navigate(`profile/${currentUser.username}`)}}>Profile</a></li>
                     <li><a className="text-base">Messages<span className="badge">New</span></a></li>
                     <li onClick = {handleLogOut}><a className="text-base">Log out<i className="fa-solid fa-right-from-bracket text-[1.1rem]"></i></a></li>
                 </ul>
